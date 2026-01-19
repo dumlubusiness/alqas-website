@@ -21,7 +21,7 @@ const ORDER_LINKS = {
 };
 
 // 3) Google Maps link
-const MAPS_LINK = "https://www.google.com/maps";
+const MAPS_LINK = "https://maps.app.goo.gl/EytJS5FhABcwX12D8";
 
 // 4) Social links (edit later)
 const SOCIAL_LINKS = {
@@ -37,6 +37,28 @@ const I18N = {
   ar: {
     brand_tag: "شاورما عراقية أصلية في قطر",
 
+    menu_modal_note: "يمكنك استبدال هذه الصورة لاحقاً بصورة المنيو الرسمية.",
+
+    menu_modal_title: "المنيو",
+
+    menu_badge: "اضغط للتكبير",
+
+    view_menu: "عرض المنيو",
+
+    menu_preview_subtitle: "هذه صورة مثال فقط — تقدر تبدلها لاحقاً بصورتكم الرسمية.",
+
+    menu_preview_title: "منيو (صورة مؤقتة)",
+
+    open_maps_short: "الموقع",
+
+    loc_desc: "افتح Google Maps لمعرفة المسافة والاتجاهات من موقعك.",
+
+    loc_hint: "اضغط لفتح الاتجاهات على Google Maps.",
+
+    loc_title: "الوُكير • قطر",
+
+    loc_label: "الموقع",
+
     nav_menu: "المنيو",
     nav_best: "الأكثر طلباً",
     nav_gallery: "الصور",
@@ -46,7 +68,7 @@ const I18N = {
     drawer_lang: "اللغة",
 
     hero_title: "شاورما عراقية أصلية... طازجة وسريعة",
-    hero_subtitle: "طعم عراقي حقيقي في قطر. اطلب خلال ثواني عبر التطبيقات أو واتساب أو اتصال مباشر.",
+    hero_subtitle: "طعم عراقي حقيقي في الوُكير – قطر. اطلب خلال ثواني عبر التطبيقات أو واتساب أو اتصال مباشر، أو افتح الاتجاهات على الخريطة.",
 
     trust_fresh: "✅ طازج يومياً",
     trust_fast: "⚡ توصيل سريع",
@@ -94,10 +116,10 @@ const I18N = {
     best_3_desc: "أفضل قيمة إذا كنت جوعان.",
 
     gallery_title: "الصور",
-    gallery_subtitle: "أضف صور منتجات أكثر لاحقاً.",
+    gallery_subtitle: "صور من شاورماتنا (يمكنك استبدالها لاحقاً بصوركم الرسمية).",
 
     location_title: "الموقع",
-    location_subtitle: "اضغط لفتح Google Maps.",
+    location_subtitle: "تقدر تلقانا في الوُكير – قطر. اضغط زر الموقع للاتجاهات.",
     open_maps: "افتح الموقع على Google Maps",
 
     footer_note: "شاورما عراقية أصلية • طازجة يومياً • اطلب بسهولة",
@@ -115,6 +137,28 @@ const I18N = {
   en: {
     brand_tag: "Authentic Iraqi Shawarma in Qatar",
 
+    menu_modal_note: "You can replace this image later with your official menu.",
+
+    menu_modal_title: "Menu",
+
+    menu_badge: "Tap to zoom",
+
+    view_menu: "View Menu",
+
+    menu_preview_subtitle: "This is a placeholder menu image — replace it later with your official menu.",
+
+    menu_preview_title: "Menu (sample image)",
+
+    open_maps_short: "Find Us",
+
+    loc_desc: "Open Google Maps to see distance and directions from your location.",
+
+    loc_hint: "Tap to open directions in Google Maps.",
+
+    loc_title: "Al Wakair • Qatar",
+
+    loc_label: "Location",
+
     nav_menu: "Menu",
     nav_best: "Bestsellers",
     nav_gallery: "Gallery",
@@ -124,7 +168,7 @@ const I18N = {
     drawer_lang: "Language",
 
     hero_title: "Authentic Iraqi Shawarma — Fresh & Fast",
-    hero_subtitle: "Real Iraqi flavor in Qatar. Order in seconds via apps, WhatsApp, or direct call.",
+    hero_subtitle: "Real Iraqi flavor in Al Wakair, Qatar. Order in seconds via apps, WhatsApp, or a quick call — or tap directions on Google Maps.",
 
     trust_fresh: "✅ Fresh daily",
     trust_fast: "⚡ Fast delivery",
@@ -147,7 +191,7 @@ const I18N = {
     benefit_3_desc: "Trusted ingredients and fresh preparation every day.",
 
     menu_title: "Menu",
-    menu_subtitle: "You can update items later easily (images + names + prices).",
+    menu_subtitle: "You can replace items later (photos + names + prices).",
     item_1_title: "Beef Shawarma (Signature)",
     item_1_desc: "Bold flavor with Iraqi seasoning.",
     item_1_price: "QAR —",
@@ -172,10 +216,10 @@ const I18N = {
     best_3_desc: "Best value when you’re hungry.",
 
     gallery_title: "Gallery",
-    gallery_subtitle: "Add more product photos later.",
+    gallery_subtitle: "A few tasty shots (replace later with your official photos).",
 
     location_title: "Location",
-    location_subtitle: "Tap to open Google Maps.",
+    location_subtitle: "Find us in Al Wakair, Qatar — tap the button for directions.",
     open_maps: "Open in Google Maps",
 
     footer_note: "Authentic Iraqi Shawarma • Fresh daily • Easy ordering",
@@ -285,9 +329,9 @@ if (tt) tt.href = SOCIAL_LINKS.tiktok;
 if (sc) sc.href = SOCIAL_LINKS.snapchat;
 
 // Maps link
-const mapsLink = document.getElementById("mapsLink");
-if (mapsLink) mapsLink.href = MAPS_LINK;
-
+document.querySelectorAll("#mapsLink, #mapsLinkHero").forEach((a) => {
+  if (a) a.href = MAPS_LINK;
+});
 // Quick buttons (direct)
 document.addEventListener("click", (e) => {
   const btn = e.target.closest("[data-order]");
@@ -406,3 +450,153 @@ document.addEventListener("keydown", (e) => {
     closeDrawer();
   }
 });
+
+
+// ===== Menu Modal (Menu image preview) =====
+const menuModal = document.getElementById("menuModal");
+const menuModalClose = document.getElementById("menuModalClose");
+const menuPreviewImg = document.getElementById("menuPreviewImg");
+const menuModalImg = document.getElementById("menuModalImg");
+
+// Fallbacks in case file name changes later
+const MENU_IMAGE_CANDIDATES = [
+  "assets/menu-eng.jpg",
+  "assets/Menu%20Eng.jpg",
+  "assets/Menu%20Eng.png",
+  "assets/menu-eng.png",
+  "assets/menu-eng.svg",
+];
+
+function setMenuImage(){
+  if (!menuPreviewImg || !menuModalImg) return;
+  // try first candidate
+  menuPreviewImg.src = MENU_IMAGE_CANDIDATES[0];
+  menuModalImg.src = MENU_IMAGE_CANDIDATES[0];
+
+  // if load fails, try next
+  let idx = 0;
+  const tryNext = () => {
+    idx += 1;
+    if (idx >= MENU_IMAGE_CANDIDATES.length) return;
+    menuPreviewImg.src = MENU_IMAGE_CANDIDATES[idx];
+    menuModalImg.src = MENU_IMAGE_CANDIDATES[idx];
+  };
+  menuPreviewImg.onerror = tryNext;
+  menuModalImg.onerror = tryNext;
+}
+setMenuImage();
+
+function openMenuModal(){
+  if (!menuModal) return;
+  menuModal.hidden = false;
+  requestAnimationFrame(() => menuModal.classList.add("is-open"));
+  document.body.classList.add("noScroll");
+}
+
+function closeMenuModal(){
+  if (!menuModal) return;
+  menuModal.classList.remove("is-open");
+  document.body.classList.remove("noScroll");
+  setTimeout(() => { menuModal.hidden = true; }, 180);
+}
+
+document.addEventListener("click", (e) => {
+  const opener = e.target.closest("[data-open-menu-modal]");
+  if (opener) {
+    e.preventDefault();
+    openMenuModal();
+    return;
+  }
+});
+
+menuModalClose?.addEventListener("click", closeMenuModal);
+menuModal?.addEventListener("click", (e) => {
+  if (e.target === menuModal) closeMenuModal();
+});
+
+
+// ===== Hero Carousel (auto + dots + arrows + swipe) =====
+function setupHeroCarousel(){
+  const carousel = document.querySelector("[data-carousel]");
+  if (!carousel) return;
+
+  const slides = Array.from(carousel.querySelectorAll(".carousel__img"));
+  const dotsWrap = carousel.querySelector(".carousel__dots");
+  let dots = Array.from(carousel.querySelectorAll(".dot"));
+  const prev = carousel.querySelector(".carousel__nav.prev");
+  const next = carousel.querySelector(".carousel__nav.next");
+
+  // Remove any broken images safely
+  slides.forEach((img, i) => {
+    img.addEventListener("error", () => {
+      img.remove();
+      if (dots[i]) dots[i].remove();
+      dots = Array.from(carousel.querySelectorAll(".dot"));
+    });
+  });
+
+  let idx = 0;
+  let timer = null;
+
+  function setActive(i){
+    const imgs = Array.from(carousel.querySelectorAll(".carousel__img"));
+    dots = Array.from(carousel.querySelectorAll(".dot"));
+    if (!imgs.length) return;
+
+    idx = (i + imgs.length) % imgs.length;
+    imgs.forEach((el, k) => el.classList.toggle("is-active", k === idx));
+    dots.forEach((d, k) => d.classList.toggle("is-active", k === idx));
+  }
+
+  function start(){
+    if (timer) clearInterval(timer);
+    timer = setInterval(() => setActive(idx + 1), 4500);
+  }
+
+  function stop(){
+    if (timer) clearInterval(timer);
+    timer = null;
+  }
+
+  // Dots click
+  dotsWrap?.addEventListener("click", (e) => {
+    const d = e.target.closest(".dot");
+    if (!d) return;
+    const all = Array.from(dotsWrap.querySelectorAll(".dot"));
+    const i = all.indexOf(d);
+    if (i >= 0) setActive(i);
+    start();
+  });
+
+  prev?.addEventListener("click", () => { setActive(idx - 1); start(); });
+  next?.addEventListener("click", () => { setActive(idx + 1); start(); });
+
+  // Swipe support
+  let x0 = null;
+  carousel.addEventListener("touchstart", (e) => {
+    x0 = e.touches?.[0]?.clientX ?? null;
+    stop();
+  }, { passive: true });
+
+  carousel.addEventListener("touchend", (e) => {
+    const x1 = e.changedTouches?.[0]?.clientX ?? null;
+    if (x0 != null && x1 != null){
+      const dx = x1 - x0;
+      if (Math.abs(dx) > 36){
+        dx > 0 ? setActive(idx - 1) : setActive(idx + 1);
+      }
+    }
+    x0 = null;
+    start();
+  }, { passive: true });
+
+  // Pause when tab hidden
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) stop();
+    else start();
+  });
+
+  setActive(0);
+  start();
+}
+setupHeroCarousel();
