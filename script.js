@@ -7,6 +7,9 @@
   - SOCIAL_LINKS: add your social links
 */
 
+// Add a class to enable JS-only animations (so the site still shows content if JS fails)
+document.documentElement.classList.add("js");
+
 // 1) UPDATE THESE 🔥
 const PHONE_QATAR = "+97455026741";
 const WHATSAPP_QATAR = "+97455026741";
@@ -22,6 +25,9 @@ const ORDER_LINKS = {
 
 // 3) Google Maps link
 const MAPS_LINK = "https://maps.app.goo.gl/EytJS5FhABcwX12D8";
+// NOTE: Google short links (maps.app.goo.gl) cannot be embedded in an iframe.
+// Use an embed-friendly URL for the map preview, and use MAPS_LINK for the "Open in Google Maps" button.
+const MAPS_EMBED = "https://www.google.com/maps?q=25.302802,51.418558&z=16&output=embed";
 
 // 4) Social links (edit later)
 const SOCIAL_LINKS = {
@@ -55,7 +61,7 @@ const I18N = {
 
     loc_hint: "اضغط لفتح الاتجاهات على Google Maps.",
 
-    loc_title: "الوُكير • قطر",
+    loc_title: "موقعنا على Google Maps",
 
     loc_label: "الموقع",
 
@@ -68,7 +74,7 @@ const I18N = {
     drawer_lang: "اللغة",
 
     hero_title: "شاورما عراقية أصلية... طازجة وسريعة",
-    hero_subtitle: "طعم عراقي حقيقي في الوُكير – قطر. اطلب خلال ثواني عبر التطبيقات أو واتساب أو اتصال مباشر، أو افتح الاتجاهات على الخريطة.",
+    hero_subtitle: "طعم عراقي حقيقي في قطر. اطلب خلال ثواني عبر التطبيقات أو واتساب أو اتصال مباشر — أو افتح الاتجاهات على الخريطة.",
 
     trust_fresh: "✅ طازج يومياً",
     trust_fast: "⚡ توصيل سريع",
@@ -119,7 +125,7 @@ const I18N = {
     gallery_subtitle: "صور من شاورماتنا (يمكنك استبدالها لاحقاً بصوركم الرسمية).",
 
     location_title: "الموقع",
-    location_subtitle: "تقدر تلقانا في الوُكير – قطر. اضغط زر الموقع للاتجاهات.",
+    location_subtitle: "اضغط زر الموقع لفتح الاتجاهات على Google Maps.",
     open_maps: "افتح الموقع على Google Maps",
 
     footer_note: "شاورما عراقية أصلية • طازجة يومياً • اطلب بسهولة",
@@ -131,7 +137,11 @@ const I18N = {
     modal_title: "اختر طريقة الطلب",
     modal_note: "اختر الخيار المناسب وسيتم فتحه فوراً.",
 
-    wa_message: "السلام عليكم، أريد طلب شاورما من ALQAS AL IRAQI"
+    wa_message: "السلام عليكم، أريد طلب شاورما من ALQAS AL IRAQI",
+    coming_soon: "Coming soon",
+    social_soon: "Social pages coming soon.",
+    follow_us: "تابعنا",
+    menu_hint: "يمكنك استبدال صورة المنيو لاحقاً."
   },
 
   en: {
@@ -155,7 +165,7 @@ const I18N = {
 
     loc_hint: "Tap to open directions in Google Maps.",
 
-    loc_title: "Al Wakair • Qatar",
+    loc_title: "Find us on Google Maps",
 
     loc_label: "Location",
 
@@ -168,7 +178,7 @@ const I18N = {
     drawer_lang: "Language",
 
     hero_title: "Authentic Iraqi Shawarma — Fresh & Fast",
-    hero_subtitle: "Real Iraqi flavor in Al Wakair, Qatar. Order in seconds via apps, WhatsApp, or a quick call — or tap directions on Google Maps.",
+    hero_subtitle: "Real Iraqi flavor in Qatar. Order in seconds via apps, WhatsApp, or a quick call — or tap directions on Google Maps.",
 
     trust_fresh: "✅ Fresh daily",
     trust_fast: "⚡ Fast delivery",
@@ -219,7 +229,7 @@ const I18N = {
     gallery_subtitle: "A few tasty shots (replace later with your official photos).",
 
     location_title: "Location",
-    location_subtitle: "Find us in Al Wakair, Qatar — tap the button for directions.",
+    location_subtitle: "Tap the button to open directions on Google Maps.",
     open_maps: "Open in Google Maps",
 
     footer_note: "Authentic Iraqi Shawarma • Fresh daily • Easy ordering",
@@ -231,7 +241,11 @@ const I18N = {
     modal_title: "Choose how to order",
     modal_note: "Pick your preferred option. We'll open it instantly.",
 
-    wa_message: "Hi, I would like to order shawarma from ALQAS AL IRAQI"
+    wa_message: "السلام عليكم، أريد طلب شاورما من ALQAS AL IRAQI",
+    coming_soon: "Coming soon",
+    social_soon: "Social pages coming soon.",
+    follow_us: "Follow us",
+    menu_hint: "You can replace this menu image later."
   }
 };
 
@@ -311,7 +325,7 @@ function setLanguage(lang){
     setLanguage(saved);
     return;
   }
-  setLanguage("ar");
+  setLanguage("en");
 })();
 
 // Language buttons
@@ -319,6 +333,18 @@ document.getElementById("langAR")?.addEventListener("click", () => setLanguage("
 document.getElementById("langEN")?.addEventListener("click", () => setLanguage("en"));
 document.getElementById("langARMobile")?.addEventListener("click", () => setLanguage("ar"));
 document.getElementById("langENMobile")?.addEventListener("click", () => setLanguage("en"));
+
+
+// Toast (small message)
+const toast = document.getElementById("toast");
+let toastTimer = null;
+function showToast(msg){
+  if (!toast) return;
+  toast.textContent = msg;
+  toast.classList.add("is-show");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toast.classList.remove("is-show"), 1800);
+}
 
 // Social links
 const ig = document.getElementById("igLink");
@@ -328,12 +354,24 @@ if (ig) ig.href = SOCIAL_LINKS.instagram;
 if (tt) tt.href = SOCIAL_LINKS.tiktok;
 if (sc) sc.href = SOCIAL_LINKS.snapchat;
 
-// Maps link
-document.querySelectorAll("#mapsLink, #mapsLinkHero").forEach((a) => {
+// Maps links + iframe
+["mapsLink","mapsLinkHero","mapsLinkMenu","mapsOverlay","mapsLinkFooter","mapsLinkBar","mapsLinkTop"].forEach((id) => {
+  const a = document.getElementById(id);
   if (a) a.href = MAPS_LINK;
 });
+
+const mapFrame = document.getElementById("mapFrame");
+if (mapFrame) mapFrame.src = MAPS_EMBED;
+
 // Quick buttons (direct)
 document.addEventListener("click", (e) => {
+  const soon = e.target.closest("[data-soon]");
+  if (soon) {
+    e.preventDefault();
+    showToast(I18N[currentLang]?.coming_soon || "Coming soon");
+    return;
+  }
+
   const btn = e.target.closest("[data-order]");
   if (btn) {
     e.preventDefault();

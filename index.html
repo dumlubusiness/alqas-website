@@ -33,20 +33,38 @@
       </button>
 
       <div class="nav__links">
-        <a href="#menu" data-i18n="nav_menu">المنيو</a>
-        <a href="#bestsellers" data-i18n="nav_best">الأكثر طلباً</a>
+<a href="#bestsellers" data-i18n="nav_best">الأكثر طلباً</a>
         <a href="#gallery" data-i18n="nav_gallery">الصور</a>
-        <a href="#location" data-i18n="nav_location">الموقع</a>
-      </div>
+</div>
 
       <div class="langSwitch" role="group" aria-label="Language switcher">
         <button class="langBtn is-active" id="langAR" type="button">AR</button>
         <button class="langBtn" id="langEN" type="button">EN</button>
       </div>
 
-      <!-- IMPORTANT: Generic "Order Now" opens modal -->
+      <a class="ctaBtn secondary" id="mapsLinkTop" href="#" target="_blank" rel="noopener">
+        <span data-i18n="open_maps_short">Find Us</span>
+      </a>
+
+      <a class="ctaBtn secondary" href="#" data-open-menu-modal>
+        <span data-i18n="view_menu">View Menu</span>
+      </a>
+
+      
+      <div class="navSocial" aria-label="Social links">
+        <a class="iconBtn iconBtn--nav" href="#" data-soon="instagram" aria-label="Instagram"><svg class="iconSvg" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm10 2H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3z"/><path d="M12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/><path d="M17.5 6.5a1.2 1.2 0 1 1 0 2.4 1.2 1.2 0 0 1 0-2.4z"/></svg><span class="srOnly">Instagram</span></a>
+        <a class="iconBtn iconBtn--nav" href="#" data-soon="tiktok" aria-label="TikTok"><svg class="iconSvg" viewBox="0 0 24 24" aria-hidden="true">
+  <path d="M14 3v10.6a3.7 3.7 0 1 0 2.1 3.3V8.8c1.1.8 2.5 1.3 3.9 1.3V8c-2.2 0-3.9-1.8-3.9-5H14z"/>
+</svg><span class="srOnly">TikTok</span></a>
+        <a class="iconBtn iconBtn--nav" href="#" data-soon="snapchat" aria-label="Snapchat"><svg class="iconSvg" viewBox="0 0 24 24" aria-hidden="true">
+  <path d="M12 3c-2.8 0-5 2.2-5 5v5.1c0 .4-.2.7-.6.9l-1.4.7c-.3.1-.4.5-.2.7.5.5 1.4.8 2.5.8.6 0 1.1.4 1.3.9.6 1.3 2 2.1 3.4 2.1s2.8-.8 3.4-2.1c.2-.5.7-.9 1.3-.9 1.1 0 2-.3 2.5-.8.2-.2.1-.6-.2-.7l-1.4-.7c-.4-.2-.6-.5-.6-.9V8c0-2.8-2.2-5-5-5z"/>
+  <path d="M9.2 10a.9.9 0 1 1-1.8 0 .9.9 0 0 1 1.8 0zm7.4 0a.9.9 0 1 1-1.8 0 .9.9 0 0 1 1.8 0z"/>
+</svg><span class="srOnly">Snapchat</span></a>
+      </div>
+
+<!-- IMPORTANT: Generic "Order Now" opens modal -->
       <a class="ctaBtn" href="#" data-open-order-modal>
-        <span data-i18n="btn_order">اطلب الآن</span>
+        <span data-i18n="btn_order">Order Now</span>
       </a>
     </nav>
   </div>
@@ -61,12 +79,21 @@
   </div>
 
   <div class="drawer__content">
-    <a href="#menu" class="drawer__link" data-i18n="nav_menu">المنيو</a>
-    <a href="#bestsellers" class="drawer__link" data-i18n="nav_best">الأكثر طلباً</a>
+<a href="#bestsellers" class="drawer__link" data-i18n="nav_best">الأكثر طلباً</a>
     <a href="#gallery" class="drawer__link" data-i18n="nav_gallery">الصور</a>
-    <a href="#location" class="drawer__link" data-i18n="nav_location">الموقع</a>
+<div class="drawer__divider"></div>
+    <div class="drawerSocial" aria-label="Social links">
+      <a class="iconBtn" href="#" data-soon="instagram" aria-label="Instagram"><svg class="iconSvg" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm5 6.2A3.8 3.8 0 1 0 15.8 12 3.8 3.8 0 0 0 12 8.2zm6.2-1.7a1.1 1.1 0 1 0 0 2.2 1.1 1.1 0 0 0 0-2.2z"/></svg><span class="srOnly">Instagram</span></a>
+      <a class="iconBtn" href="#" data-soon="tiktok" aria-label="TikTok"><svg class="iconSvg" viewBox="0 0 24 24" aria-hidden="true">
+  <path d="M14 3v10.6a3.7 3.7 0 1 0 2.1 3.3V8.8c1.1.8 2.5 1.3 3.9 1.3V8c-2.2 0-3.9-1.8-3.9-5H14z"/>
+</svg><span class="srOnly">TikTok</span></a>
+      <a class="iconBtn" href="#" data-soon="snapchat" aria-label="Snapchat"><svg class="iconSvg" viewBox="0 0 24 24" aria-hidden="true">
+  <path d="M12 3c-2.8 0-5 2.2-5 5v5.1c0 .4-.2.7-.6.9l-1.4.7c-.3.1-.4.5-.2.7.5.5 1.4.8 2.5.8.6 0 1.1.4 1.3.9.6 1.3 2 2.1 3.4 2.1s2.8-.8 3.4-2.1c.2-.5.7-.9 1.3-.9 1.1 0 2-.3 2.5-.8.2-.2.1-.6-.2-.7l-1.4-.7c-.4-.2-.6-.5-.6-.9V8c0-2.8-2.2-5-5-5z"/>
+  <path d="M9.2 10a.9.9 0 1 1-1.8 0 .9.9 0 0 1 1.8 0zm7.4 0a.9.9 0 1 1-1.8 0 .9.9 0 0 1 1.8 0z"/>
+</svg><span class="srOnly">Snapchat</span></a>
+      <div class="tinyNote" data-i18n="social_soon">Social pages coming soon.</div>
+    </div>
 
-    <div class="drawer__divider"></div>
 
     <div class="drawer__lang">
       <div class="drawer__langLabel" data-i18n="drawer_lang">اللغة</div>
@@ -86,108 +113,92 @@
   </div>
 </aside>
 
-<main id="top" class="hero">
-  <div class="container hero__grid">
-    <div class="hero__content reveal">
-      <h1 class="hero__title" data-i18n="hero_title">شاورما عراقية أصلية... طازجة وسريعة</h1>
-      <p class="hero__subtitle" data-i18n="hero_subtitle">طعم عراقي حقيقي في قطر. اطلب خلال ثواني عبر التطبيقات أو واتساب أو اتصال مباشر.</p>
+<main id="top" class="hero hero--overlay">
+  <!-- Background carousel -->
+  <div class="heroBg" data-carousel aria-label="Hero images">
+    <div class="carousel__slides">
+      <img class="carousel__img is-active" src="assets/hero.jpg" alt="ALQAS AL IRAQI Shawarma" loading="eager" />
+      <img class="carousel__img" src="assets/hero-2.jpg" alt="ALQAS AL IRAQI Shawarma" loading="lazy" />
+      <img class="carousel__img" src="assets/hero-3.jpg" alt="ALQAS AL IRAQI Shawarma" loading="lazy" />
+      <img class="carousel__img" src="assets/hero-4.jpg" alt="ALQAS AL IRAQI Shawarma" loading="lazy" />
+    </div>
+
+    <button class="carousel__nav prev" type="button" aria-label="Previous image">‹</button>
+    <button class="carousel__nav next" type="button" aria-label="Next image">›</button>
+
+    <div class="carousel__dots" aria-label="Hero image selector">
+      <button class="dot is-active" type="button" aria-label="Slide 1"></button>
+      <button class="dot" type="button" aria-label="Slide 2"></button>
+      <button class="dot" type="button" aria-label="Slide 3"></button>
+      <button class="dot" type="button" aria-label="Slide 4"></button>
+    </div>
+  </div>
+
+  <div class="container heroOverlay">
+    <div class="heroCard reveal">
+      <h1 class="hero__title" data-i18n="hero_title">Authentic Iraqi Shawarma — Fresh & Fast</h1>
+      <p class="hero__subtitle" data-i18n="hero_subtitle">Real Iraqi flavor in Qatar. Order in seconds via apps, WhatsApp, or a quick call — or tap directions on Google Maps.</p>
 
       <div class="hero__trust">
-        <span class="chip" data-i18n="trust_fresh">✅ طازج يومياً</span>
-        <span class="chip" data-i18n="trust_fast">⚡ توصيل سريع</span>
-        <span class="chip" data-i18n="trust_quality">🔥 جودة ثابتة</span>
-      </div>
-
-            <div class="locCard reveal">
-        <div class="locCard__left">
-          <div class="locCard__title" data-i18n="loc_title">الوُكير • قطر</div>
-        </div>
-        <a id="mapsLinkHero" class="locCard__btn" href="#" target="_blank" rel="noopener">
-          <span data-i18n="open_maps_short">الاتجاهات</span>
-        </a>
+        <span class="chip" data-i18n="trust_fresh">✅ Fresh daily</span>
+        <span class="chip" data-i18n="trust_fast">⚡ Fast delivery</span>
+        <span class="chip" data-i18n="trust_quality">🔥 Consistent quality</span>
       </div>
 
       <div class="hero__actions">
-        <!-- Direct options (quick conversion) -->
-        <a class="bigBtn" href="#" data-order="talabat"><span data-i18n="cta_talabat">اطلب من Talabat</span></a>
-        <a class="bigBtn" href="#" data-order="snoonu"><span data-i18n="cta_snoonu">اطلب من Snoonu</span></a>
-        <a class="ghostBtn" href="#" data-order="whatsapp"><span data-i18n="cta_whatsapp">واتساب سريع</span></a>
-        <a class="ghostBtn" href="#" data-order="call"><span data-i18n="cta_call">اتصال مباشر</span></a>
+        <button class="bigBtn" data-open-menu-modal type="button">
+          <span data-i18n="view_menu">View Menu</span>
+        </button>
 
-        <!-- Generic Order Now opens modal -->
-        <a class="bigBtn alt" href="#" data-open-order-modal><span data-i18n="btn_order">اطلب الآن</span></a>
+        <button class="bigBtn alt" data-open-order-modal type="button">
+          <span data-i18n="btn_order">Order Now</span>
+        </button>
+
+        <a id="mapsLinkHero" class="ghostBtn mapsInline" href="#" target="_blank" rel="noopener">
+          <span data-i18n="open_maps_short">Find Us</span>
+        </a>
       </div>
 
-      <p class="micro" data-i18n="hero_micro">* المنيو الكامل سيتم إضافته قريباً. حالياً: اعرض المنتجات واطلب بسهولة.</p>
-</div>
-
-        <div class="hero__media reveal" aria-label="Hero image">
-      <div class="carousel" data-carousel>
-        <div class="carousel__slides">
-          <img class="carousel__img is-active" src="assets/hero.jpg" alt="ALQAS AL IRAQI Shawarma" loading="eager" />
-          <img class="carousel__img" src="assets/hero-2.jpg" alt="ALQAS AL IRAQI Shawarma" loading="lazy" />
-          <img class="carousel__img" src="assets/hero-3.jpg" alt="ALQAS AL IRAQI Shawarma" loading="lazy" />
-          <img class="carousel__img" src="assets/hero-4.jpg" alt="ALQAS AL IRAQI Shawarma" loading="lazy" />
-        </div>
-
-        <button class="carousel__nav prev" type="button" aria-label="Previous image">‹</button>
-        <button class="carousel__nav next" type="button" aria-label="Next image">›</button>
-
-        <div class="carousel__dots" aria-label="Hero image selector">
-          <button class="dot is-active" type="button" aria-label="Slide 1"></button>
-          <button class="dot" type="button" aria-label="Slide 2"></button>
-          <button class="dot" type="button" aria-label="Slide 3"></button>
-          <button class="dot" type="button" aria-label="Slide 4"></button>
-        </div>
+      <div class="heroSocial" aria-label="Social media">
+        <span class="heroSocial__label" data-i18n="follow_us">Follow us</span>
+        <a class="iconBtn" href="#" data-soon="instagram" aria-label="Instagram"><svg class="iconSvg" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm10 2H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3z"/><path d="M12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/><path d="M17.5 6.5a1.2 1.2 0 1 1 0 2.4 1.2 1.2 0 0 1 0-2.4z"/></svg><span class="srOnly">Instagram</span></a>
+        <a class="iconBtn" href="#" data-soon="tiktok" aria-label="TikTok"><svg class="iconSvg" viewBox="0 0 24 24" aria-hidden="true">
+  <path d="M14 3v10.6a3.7 3.7 0 1 0 2.1 3.3V8.8c1.1.8 2.5 1.3 3.9 1.3V8c-2.2 0-3.9-1.8-3.9-5H14z"/>
+</svg><span class="srOnly">TikTok</span></a>
+        <a class="iconBtn" href="#" data-soon="snapchat" aria-label="Snapchat"><svg class="iconSvg" viewBox="0 0 24 24" aria-hidden="true">
+  <path d="M12 3c-2.8 0-5 2.2-5 5v5.1c0 .4-.2.7-.6.9l-1.4.7c-.3.1-.4.5-.2.7.5.5 1.4.8 2.5.8.6 0 1.1.4 1.3.9.6 1.3 2 2.1 3.4 2.1s2.8-.8 3.4-2.1c.2-.5.7-.9 1.3-.9 1.1 0 2-.3 2.5-.8.2-.2.1-.6-.2-.7l-1.4-.7c-.4-.2-.6-.5-.6-.9V8c0-2.8-2.2-5-5-5z"/>
+  <path d="M9.2 10a.9.9 0 1 1-1.8 0 .9.9 0 0 1 1.8 0zm7.4 0a.9.9 0 1 1-1.8 0 .9.9 0 0 1 1.8 0z"/>
+</svg><span class="srOnly">Snapchat</span></a>
       </div>
+
+      <p class="micro" data-i18n="hero_micro">* Full menu will be added soon. For now: preview items and order easily.</p>
     </div>
   </div>
 </main>
 
-<section id="menu" class="section soft">
+<section id="menu" class="section section--menu">
   <div class="container">
     <div class="section__head reveal">
-      <h2 data-i18n="menu_title">المنيو</h2>
-      <p data-i18n="menu_subtitle">شوف المنيو الآن (صورة مؤقتة) — وتقدر تبدلها لاحقاً بالمنيو الرسمي.</p>
+      <h2 data-i18n="menu_title">Menu</h2>
+      <p data-i18n="menu_subtitle">Preview our menu now. Full menu updates coming soon.</p>
     </div>
 
-    <div class="menuPreview reveal">
-      <div class="menuPreview__text">
-        <h3 class="h3" data-i18n="menu_preview_title">منيو (صورة مؤقتة)</h3>
-        <p class="muted" data-i18n="menu_preview_subtitle">هذه صورة مثال فقط — تقدر تبدلها لاحقاً بصورتكم الرسمية.</p>
-        <button class="bigBtn alt" type="button" data-open-menu-modal>
-          <span data-i18n="view_menu">عرض المنيو</span>
+    <div class="menuCard reveal">
+      <div class="menuPreview">
+        <img class="menuImg" src="assets/menu-eng.jpg" alt="Menu preview" loading="lazy" />
+      </div>
+      <div class="menuActions">
+        <button class="bigBtn" type="button" data-open-menu-modal>
+          <span data-i18n="view_menu">View Menu</span>
         </button>
-      </div>
-
-      <!-- No preview image (clean + simple). The full image is inside the popup modal. -->
-    </div>
-  </div>
-</section>
-
-<section class="section">
-  <div class="container">
-    <div class="section__head reveal">
-      <h2 data-i18n="benefits_title">ليش الناس تختار ALQAS AL IRAQI؟</h2>
-      <p data-i18n="benefits_subtitle">لأنك تبي طعم ثابت، خدمة سريعة، وطلب سهل بدون تعقيد.</p>
-    </div>
-
-    <div class="cards reveal">
-      <div class="card">
-        <h3 data-i18n="benefit_1_title">طعم عراقي أصيل</h3>
-        <p data-i18n="benefit_1_desc">تتبيلة متوازنة، شاورما مشوية صح، ونكهة ترجعك العراق.</p>
-      </div>
-      <div class="card">
-        <h3 data-i18n="benefit_2_title">طلب سهل</h3>
-        <p data-i18n="benefit_2_desc">اختر الطريقة اللي تريحك: تطبيقات، واتساب، أو اتصال.</p>
-      </div>
-      <div class="card">
-        <h3 data-i18n="benefit_3_title">جودة ثابتة</h3>
-        <p data-i18n="benefit_3_desc">مكونات موثوقة وتحضير يومي لنتيجة ترضيك كل مرة.</p>
+        <a class="ghostBtn" id="mapsLinkMenu" href="#" target="_blank" rel="noopener">
+          <span data-i18n="open_maps_short">Find Us</span>
+        </a>
       </div>
     </div>
   </div>
 </section>
+
 
 <section id="bestsellers" class="section">
   <div class="container">
@@ -247,22 +258,26 @@
   </div>
 </section>
 
-<section id="location" class="section">
+<section id="location" class="section section--map">
   <div class="container">
     <div class="section__head reveal">
-      <h2 data-i18n="location_title">الموقع</h2>
-      <p data-i18n="location_subtitle">اضغط لفتح Google Maps.</p>
+      <h2 data-i18n="location_title">Location</h2>
+      <p data-i18n="location_subtitle">Tap the map or the button to open directions in Google Maps.</p>
     </div>
-<div class="locBlock__info">
-        <div class="locBlock__name" data-i18n="loc_title">الوُكير • قطر</div>
-        <div class="locBlock__desc" data-i18n="loc_desc">افتح Google Maps لمعرفة المسافة والاتجاهات من موقعك.</div>
+
+    <div class="mapCard reveal">
+      <div class="mapFrame">
+        <iframe id="mapFrame" title="Google Maps" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <a id="mapsOverlay" class="mapOverlay" href="#" target="_blank" rel="noopener">
+          <span data-i18n="open_maps_short">Find Us</span>
+        </a>
       </div>
-    </div>
 
-
-      <a id="mapsLink" class="bigBtn" href="#" target="_blank" rel="noopener">
-        <span data-i18n="open_maps">افتح الموقع على Google Maps</span>
-      </a>
+      <div class="mapActions">
+        <a id="mapsLink" class="bigBtn" href="#" target="_blank" rel="noopener">
+          <span data-i18n="open_maps">Open in Google Maps</span>
+        </a>
+      </div>
     </div>
   </div>
 </section>
@@ -271,27 +286,36 @@
   <div class="container footer__inner">
     <div class="footer__left">
       <div class="footer__brand">ALQAS AL IRAQI</div>
-      <div class="footer__note" data-i18n="footer_note">شاورما عراقية أصلية • طازجة يومياً • اطلب بسهولة</div>
+      <div class="footer__note" data-i18n="footer_note">Authentic Iraqi Shawarma • Fresh daily • Easy ordering</div>
+
+      <div class="footer__social" aria-label="Social media (coming soon)">
+        <a class="iconBtn" href="#" data-soon="instagram" aria-label="Instagram (coming soon)"><svg class="iconSvg" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm10 2H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3z"/><path d="M12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/><path d="M17.5 6.5a1.2 1.2 0 1 1 0 2.4 1.2 1.2 0 0 1 0-2.4z"/></svg><span class="srOnly">Instagram</span></a>
+        <a class="iconBtn" href="#" data-soon="tiktok" aria-label="TikTok (coming soon)"><svg class="iconSvg" viewBox="0 0 24 24" aria-hidden="true">
+  <path d="M14 3v10.6a3.7 3.7 0 1 0 2.1 3.3V8.8c1.1.8 2.5 1.3 3.9 1.3V8c-2.2 0-3.9-1.8-3.9-5H14z"/>
+</svg><span class="srOnly">TikTok</span></a>
+        <a class="iconBtn" href="#" data-soon="snapchat" aria-label="Snapchat (coming soon)"><svg class="iconSvg" viewBox="0 0 24 24" aria-hidden="true">
+  <path d="M12 3c-2.8 0-5 2.2-5 5v5.1c0 .4-.2.7-.6.9l-1.4.7c-.3.1-.4.5-.2.7.5.5 1.4.8 2.5.8.6 0 1.1.4 1.3.9.6 1.3 2 2.1 3.4 2.1s2.8-.8 3.4-2.1c.2-.5.7-.9 1.3-.9 1.1 0 2-.3 2.5-.8.2-.2.1-.6-.2-.7l-1.4-.7c-.4-.2-.6-.5-.6-.9V8c0-2.8-2.2-5-5-5z"/>
+  <path d="M9.2 10a.9.9 0 1 1-1.8 0 .9.9 0 0 1 1.8 0zm7.4 0a.9.9 0 1 1-1.8 0 .9.9 0 0 1 1.8 0z"/>
+</svg><span class="srOnly">Snapchat</span></a>
+      </div>
+
+      <div class="footer__hint" data-i18n="social_soon">Social pages coming soon.</div>
     </div>
 
     <div class="footer__right">
-      <button class="pill" data-order="call" type="button"><span data-i18n="btn_call">اتصال</span></button>
-      <button class="pill" data-order="whatsapp" type="button"><span data-i18n="btn_whatsapp">واتساب</span></button>
-      <!-- Generic Order Now opens modal -->
-      <button class="pill primary" data-open-order-modal type="button"><span data-i18n="btn_order">اطلب الآن</span></button>
+      <a id="mapsLinkFooter" class="pill" href="#" target="_blank" rel="noopener">
+        <span data-i18n="open_maps_short">Find Us</span>
+      </a>
+      <button class="pill primary" data-open-order-modal type="button"><span data-i18n="btn_order">Order Now</span></button>
     </div>
   </div>
 </footer>
 
-<!-- Sticky Mobile Bar -->
+<!-- Sticky Mobile Bar (Mobile only) -->
 <div id="mobileBar" class="mobileBar" role="navigation" aria-label="Quick order bar">
-  <button class="mobileBar__btn" data-quick="talabat" type="button">Talabat</button>
-  <button class="mobileBar__btn" data-quick="snoonu" type="button">Snoonu</button>
-  <button class="mobileBar__btn" data-quick="keeta" type="button">Keeta</button>
-  <button class="mobileBar__btn" data-quick="whatsapp" type="button">WhatsApp</button>
-  <button class="mobileBar__btn primary" data-open-order-modal type="button"><span data-i18n="btn_order">اطلب الآن</span></button>
+  <a id="mapsLinkBar" class="mobileBar__btn" href="#" target="_blank" rel="noopener"><span data-i18n="open_maps_short">Find Us</span></a>
+  <button class="mobileBar__btn primary" data-open-order-modal type="button"><span data-i18n="btn_order">Order Now</span></button>
 </div>
-
 <!-- Order Options Modal -->
 <div id="orderModal" class="modal" hidden role="dialog" aria-modal="true" aria-labelledby="orderModalTitle">
   <div class="modal__panel">
@@ -329,5 +353,6 @@
 </div>
 
 <script src="script.js"></script>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
 </body>
 </html>
