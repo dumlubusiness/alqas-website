@@ -42,15 +42,6 @@
         <button class="langBtn" id="langEN" type="button">EN</button>
       </div>
 
-      <a class="ctaBtn secondary" id="mapsLinkTop" href="#" target="_blank" rel="noopener">
-        <span data-i18n="open_maps_short">Find Us</span>
-      </a>
-
-      <a class="ctaBtn secondary" href="#" data-open-menu-modal>
-        <span data-i18n="view_menu">View Menu</span>
-      </a>
-
-      
       <div class="navSocial" aria-label="Social links">
         <a class="iconBtn iconBtn--nav" href="#" data-soon="instagram" aria-label="Instagram"><svg class="iconSvg" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm10 2H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3z"/><path d="M12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/><path d="M17.5 6.5a1.2 1.2 0 1 1 0 2.4 1.2 1.2 0 0 1 0-2.4z"/></svg><span class="srOnly">Instagram</span></a>
         <a class="iconBtn iconBtn--nav" href="#" data-soon="tiktok" aria-label="TikTok"><svg class="iconSvg" viewBox="0 0 24 24" aria-hidden="true">
@@ -150,6 +141,10 @@
           <span data-i18n="view_menu">View Menu</span>
         </button>
 
+        <a class="ghostBtn" href="#promotions">
+          <span data-i18n="btn_promotions">Promotions</span>
+        </a>
+
         <button class="bigBtn alt" data-open-order-modal type="button">
           <span data-i18n="btn_order">Order Now</span>
         </button>
@@ -188,12 +183,41 @@
         <img class="menuImg" src="assets/menu-eng.jpg" alt="Menu preview" loading="lazy" />
       </div>
       <div class="menuActions">
-        <button class="bigBtn" type="button" data-open-menu-modal>
-          <span data-i18n="view_menu">View Menu</span>
-        </button>
-        <a class="ghostBtn" id="mapsLinkMenu" href="#" target="_blank" rel="noopener">
-          <span data-i18n="open_maps_short">Find Us</span>
-        </a>
+        <div id="promotions" class="promoWrap">
+          <div class="promoHead">
+            <h3 class="promoTitle" data-i18n="promos_title">Promotions</h3>
+            <p class="promoSub" data-i18n="promos_sub">Hot deals to catch your eye. Update anytime.</p>
+          </div>
+
+          <div class="promoGrid">
+            <article class="promoCard reveal">
+              <div class="promoTag" data-i18n="promo1_tag">Limited</div>
+              <div class="promoName" data-i18n="promo1_title">Opening Offer</div>
+              <div class="promoDesc" data-i18n="promo1_desc">Add your real discount here later.</div>
+            </article>
+
+            <article class="promoCard reveal">
+              <div class="promoTag" data-i18n="promo2_tag">Best value</div>
+              <div class="promoName" data-i18n="promo2_title">Family Combo</div>
+              <div class="promoDesc" data-i18n="promo2_desc">Perfect for sharing, fast and filling.</div>
+            </article>
+
+            <article class="promoCard reveal">
+              <div class="promoTag" data-i18n="promo3_tag">Fast pickup</div>
+              <div class="promoName" data-i18n="promo3_title">Lunch Deal</div>
+              <div class="promoDesc" data-i18n="promo3_desc">Quick lunch option for busy days.</div>
+            </article>
+          </div>
+        </div>
+
+        <div class="menuBtns">
+          <button class="bigBtn" type="button" data-open-menu-modal>
+            <span data-i18n="view_menu">View Menu</span>
+          </button>
+          <a class="ghostBtn" id="mapsLinkMenu" href="#" target="_blank" rel="noopener">
+            <span data-i18n="open_maps_short">Find Us</span>
+          </a>
+        </div>
       </div>
     </div>
   </div>

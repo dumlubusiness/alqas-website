@@ -50,6 +50,18 @@ const I18N = {
     menu_badge: "اضغط للتكبير",
 
     view_menu: "عرض المنيو",
+	    btn_promotions: "العروض",
+	    promos_title: "العروض الحالية",
+	    promos_sub: "عروض محدودة ويمكن تحديثها في أي وقت.",
+	    promo1_tag: "لفترة محدودة",
+	    promo1_title: "عرض الافتتاح",
+	    promo1_desc: "أضف تفاصيل عرضك الحقيقي هنا لاحقًا.",
+	    promo2_tag: "الأكثر طلبًا",
+	    promo2_title: "كومبو العائلة",
+	    promo2_desc: "مناسب للمشاركة. (عدّل هذا النص لاحقًا)",
+	    promo3_tag: "سريع",
+	    promo3_title: "غداء المكتب",
+	    promo3_desc: "خيار سريع للدوام. (عدّل لاحقًا)",
 
     menu_preview_subtitle: "هذه صورة مثال فقط — تقدر تبدلها لاحقاً بصورتكم الرسمية.",
 
@@ -154,6 +166,18 @@ const I18N = {
     menu_badge: "Tap to zoom",
 
     view_menu: "View Menu",
+	    btn_promotions: "Promotions",
+	    promos_title: "Today’s Promotions",
+	    promos_sub: "Limited-time offers. Update anytime.",
+	    promo1_tag: "Limited",
+	    promo1_title: "Opening Offer",
+	    promo1_desc: "Add your real promo details here later.",
+	    promo2_tag: "Popular",
+	    promo2_title: "Family Combo",
+	    promo2_desc: "Great to share. (Edit this text later.)",
+	    promo3_tag: "Fast",
+	    promo3_title: "Office Lunch",
+	    promo3_desc: "Quick meal option. (Edit later.)",
 
     menu_preview_subtitle: "This is a placeholder menu image — replace it later with your official menu.",
 
