@@ -1,664 +1,381 @@
-/*
-  ALQAS AL IRAQI - Simple JS (Beginner-friendly)
-  ------------------------------------------------
-  ✅ Setup (edit only these):
-  - ORDER_LINKS: add your real Talabat/Snoonu/Keeta URLs
-  - MAPS_LINK: add your real Google Maps pin
-  - SOCIAL_LINKS: add your social links
+/* ALQAS website - clean, responsive, and stable
+   - Default language: EN (user requested "default language 1")
+   - Replace these links later with your real store links (Talabat/Snoonu/Keeta)
 */
 
-// Add a class to enable JS-only animations (so the site still shows content if JS fails)
-document.documentElement.classList.add("js");
+const MAPS_LINK = "https://maps.app.goo.gl/EytJS5FhABcwX12D8";
+const PHONE_QATAR = "+97455026741"; // <-- replace if needed
 
-// 1) UPDATE THESE 🔥
-const PHONE_QATAR = "+97455026741";
-const WHATSAPP_QATAR = "+97455026741";
-
-// 2) Replace these with YOUR restaurant pages on each app
-const ORDER_LINKS = {
+const STORE_LINKS = {
   talabat: "https://www.talabat.com/qatar",
   snoonu: "https://snoonu.com/",
-  keeta: "https://www.keeta.com/",
-  call: () => `tel:${PHONE_QATAR}`,
-  whatsapp: (message) => buildWhatsAppLink(message),
+  keeta: "https://www.keeta.com/"
 };
-
-// 3) Google Maps link
-const MAPS_LINK = "https://maps.app.goo.gl/EytJS5FhABcwX12D8";
-// NOTE: Google short links (maps.app.goo.gl) cannot be embedded in an iframe.
-// Use an embed-friendly URL for the map preview, and use MAPS_LINK for the "Open in Google Maps" button.
-const MAPS_EMBED = "https://www.google.com/maps?q=25.302802,51.418558&z=16&output=embed";
-
-// 4) Social links (edit later)
-const SOCIAL_LINKS = {
-  instagram: "#",
-  tiktok: "#",
-  snapchat: "#",
-};
-
-// ------------------------------------------------------------
-// Bilingual content (AR/EN)
 
 const I18N = {
-  ar: {
-    brand_tag: "شاورما عراقية أصلية في قطر",
-
-    menu_modal_note: "يمكنك استبدال هذه الصورة لاحقاً بصورة المنيو الرسمية.",
-
-    menu_modal_title: "المنيو",
-
-    menu_badge: "اضغط للتكبير",
-
-    view_menu: "عرض المنيو",
-	    btn_promotions: "العروض",
-	    promos_title: "العروض الحالية",
-	    promos_sub: "عروض محدودة ويمكن تحديثها في أي وقت.",
-	    promo1_tag: "لفترة محدودة",
-	    promo1_title: "عرض الافتتاح",
-	    promo1_desc: "أضف تفاصيل عرضك الحقيقي هنا لاحقًا.",
-	    promo2_tag: "الأكثر طلبًا",
-	    promo2_title: "كومبو العائلة",
-	    promo2_desc: "مناسب للمشاركة. (عدّل هذا النص لاحقًا)",
-	    promo3_tag: "سريع",
-	    promo3_title: "غداء المكتب",
-	    promo3_desc: "خيار سريع للدوام. (عدّل لاحقًا)",
-
-    menu_preview_subtitle: "هذه صورة مثال فقط — تقدر تبدلها لاحقاً بصورتكم الرسمية.",
-
-    menu_preview_title: "منيو (صورة مؤقتة)",
-
-    open_maps_short: "الموقع",
-
-    loc_desc: "افتح Google Maps لمعرفة المسافة والاتجاهات من موقعك.",
-
-    loc_hint: "اضغط لفتح الاتجاهات على Google Maps.",
-
-    loc_title: "موقعنا على Google Maps",
-
-    loc_label: "الموقع",
-
-    nav_menu: "المنيو",
-    nav_best: "الأكثر طلباً",
-    nav_gallery: "الصور",
-    nav_location: "الموقع",
-
-    drawer_title: "القائمة",
-    drawer_lang: "اللغة",
-
-    hero_title: "شاورما عراقية أصلية... طازجة وسريعة",
-    hero_subtitle: "طعم عراقي حقيقي في قطر. اطلب خلال ثواني عبر التطبيقات أو واتساب أو اتصال مباشر — أو افتح الاتجاهات على الخريطة.",
-
-    trust_fresh: "✅ طازج يومياً",
-    trust_fast: "⚡ توصيل سريع",
-    trust_quality: "🔥 جودة ثابتة",
-
-    cta_talabat: "اطلب من Talabat",
-    cta_snoonu: "اطلب من Snoonu",
-    cta_whatsapp: "واتساب سريع",
-    cta_call: "اتصال مباشر",
-
-    hero_micro: "* المنيو الكامل سيتم إضافته قريباً. حالياً: اعرض المنتجات واطلب بسهولة.",
-
-    benefits_title: "ليش الناس تختار ALQAS AL IRAQI؟",
-    benefits_subtitle: "لأنك تبي طعم ثابت، خدمة سريعة، وطلب سهل بدون تعقيد.",
-    benefit_1_title: "طعم عراقي أصيل",
-    benefit_1_desc: "تتبيلة متوازنة، شاورما مشوية صح، ونكهة ترجعك العراق.",
-    benefit_2_title: "طلب سهل",
-    benefit_2_desc: "اختر الطريقة اللي تريحك: تطبيقات، واتساب، أو اتصال.",
-    benefit_3_title: "جودة ثابتة",
-    benefit_3_desc: "مكونات موثوقة وتحضير يومي لنتيجة ترضيك كل مرة.",
-
-    menu_title: "المنيو",
-    menu_subtitle: "تقدر تضيف/تعدل الأصناف لاحقاً بسهولة (صور + أسماء + أسعار).",
-    item_1_title: "شاورما لحم (سيغنتشر)",
-    item_1_desc: "مذاق قوي وتتبيلة عراقية.",
-    item_1_price: "QAR —",
-    item_2_title: "شاورما دجاج",
-    item_2_desc: "طريّة ولذيذة ومناسبة للجميع.",
-    item_2_price: "QAR —",
-    item_3_title: "كومبو",
-    item_3_desc: "شاورما + بطاطس + مشروب.",
-    item_3_price: "QAR —",
-    menu_cta: "اختر طريقة الطلب الآن",
-
-    best_title: "الأكثر طلباً",
-    best_subtitle: "اختيارات الناس اللي ترجع تطلب مرة ثانية.",
-    best_badge_1: "#1",
-    best_1_title: "شاورما اللحم السيغنتشر",
-    best_1_desc: "للناس اللي تحب النكهة القوية.",
-    best_badge_2: "#2",
-    best_2_title: "شاورما الدجاج",
-    best_2_desc: "خفيفة ولذيذة ومحبوبة.",
-    best_badge_3: "#3",
-    best_3_title: "كومبو الوجبة",
-    best_3_desc: "أفضل قيمة إذا كنت جوعان.",
-
-    gallery_title: "الصور",
-    gallery_subtitle: "صور من شاورماتنا (يمكنك استبدالها لاحقاً بصوركم الرسمية).",
-
-    location_title: "الموقع",
-    location_subtitle: "اضغط زر الموقع لفتح الاتجاهات على Google Maps.",
-    open_maps: "افتح الموقع على Google Maps",
-
-    footer_note: "شاورما عراقية أصلية • طازجة يومياً • اطلب بسهولة",
-
-    btn_order: "اطلب الآن",
-    btn_whatsapp: "واتساب",
-    btn_call: "اتصال",
-
-    modal_title: "اختر طريقة الطلب",
-    modal_note: "اختر الخيار المناسب وسيتم فتحه فوراً.",
-
-    wa_message: "السلام عليكم، أريد طلب شاورما من ALQAS AL IRAQI",
-    coming_soon: "Coming soon",
-    social_soon: "Social pages coming soon.",
-    follow_us: "تابعنا",
-    menu_hint: "يمكنك استبدال صورة المنيو لاحقاً."
-  },
-
   en: {
-    brand_tag: "Authentic Iraqi Shawarma in Qatar",
+    brandTitle: "ALQAS AL IRAQI",
+    brandSub: "Authentic Iraqi Shawarma in Qatar",
+    navMenu: "Menu",
+    navPromotions: "Promotions",
+    navBestsellers: "Bestsellers",
+    navGallery: "Gallery",
+    navLocation: "Location",
 
-    menu_modal_note: "You can replace this image later with your official menu.",
+    heroTitle: "Authentic Iraqi Shawarma — Fresh & Fast",
+    heroDesc: "Real Iraqi flavor in Qatar. Order in seconds via apps, WhatsApp, or a quick call — or tap directions on Google Maps.",
+    chipFresh: "Fresh daily",
+    chipDelivery: "Fast delivery",
+    chipQuality: "Consistent quality",
 
-    menu_modal_title: "Menu",
+    btnOrderNow: "Order Now",
+    btnViewMenu: "View Menu",
+    btnPromotions: "Promotions",
+    btnFindUs: "Find Us",
+    btnOpenMaps: "Open in Google Maps",
 
-    menu_badge: "Tap to zoom",
+    menuPromotionsTitle: "Menu & Promotions",
+    menuPromotionsHint: "You can replace items later (photos + names + prices).",
 
-    view_menu: "View Menu",
-	    btn_promotions: "Promotions",
-	    promos_title: "Today’s Promotions",
-	    promos_sub: "Limited-time offers. Update anytime.",
-	    promo1_tag: "Limited",
-	    promo1_title: "Opening Offer",
-	    promo1_desc: "Add your real promo details here later.",
-	    promo2_tag: "Popular",
-	    promo2_title: "Family Combo",
-	    promo2_desc: "Great to share. (Edit this text later.)",
-	    promo3_tag: "Fast",
-	    promo3_title: "Office Lunch",
-	    promo3_desc: "Quick meal option. (Edit later.)",
+    promoTag1: "Limited time",
+    promoTitle1: "Combo Offer",
+    promoDesc1: "Add fries + drink with a special price. Replace details later.",
+    promoTag2: "New",
+    promoTitle2: "Family Meal",
+    promoDesc2: "Perfect for sharing. Add real items and pricing later.",
+    promoTag3: "Best value",
+    promoTitle3: "Lunch Deal",
+    promoDesc3: "Quick + affordable. Update the offer when ready.",
 
-    menu_preview_subtitle: "This is a placeholder menu image — replace it later with your official menu.",
+    bestsellersTitle: "Bestsellers",
+    bestsellersHint: "Customer favorites people reorder again and again.",
+    best1Title: "Signature Beef Shawarma",
+    best1Desc: "Perfect for bold-flavor lovers.",
+    best2Title: "Chicken Shawarma",
+    best2Desc: "Light, delicious, and popular.",
+    best3Title: "Combo Meal",
+    best3Desc: "Best value when you’re hungry.",
 
-    menu_preview_title: "Menu (sample image)",
+    galleryTitle: "Gallery",
+    galleryHint: "A few favorites — replace with your real photos anytime.",
 
-    open_maps_short: "Find Us",
+    locationTitle: "Location",
+    locationHint: "Tap the button to open directions on Google Maps.",
+    mapPreviewText: "Open Google Maps to view the exact location.",
 
-    loc_desc: "Open Google Maps to see distance and directions from your location.",
+    followUs: "Follow us",
+    socialSoon: "Social pages coming soon.",
 
-    loc_hint: "Tap to open directions in Google Maps.",
+    footerTagline: "Authentic Iraqi Shawarma • Fresh daily • Easy ordering",
 
-    loc_title: "Find us on Google Maps",
+    orderTitle: "Choose how to order",
+    orderTalabat: "Talabat",
+    orderSnoonu: "Snoonu",
+    orderKeeta: "Keeta",
+    orderWhatsApp: "WhatsApp",
+    orderCall: "Call",
+    orderSoon: "Link will be added soon",
 
-    loc_label: "Location",
+    menuTitle: "Menu",
+  },
+  ar: {
+    brandTitle: "شاورما قص العراقي",
+    brandSub: "شاورما عراقية أصلية في قطر",
+    navMenu: "القائمة",
+    navPromotions: "العروض",
+    navBestsellers: "الأكثر طلباً",
+    navGallery: "الصور",
+    navLocation: "الموقع",
 
-    nav_menu: "Menu",
-    nav_best: "Bestsellers",
-    nav_gallery: "Gallery",
-    nav_location: "Location",
+    heroTitle: "شاورما عراقية أصيلة — طازجة وسريعة",
+    heroDesc: "نكهة عراقية حقيقية في قطر. اطلب خلال ثوانٍ عبر التطبيقات أو واتساب أو اتصال سريع — أو افتح الاتجاهات على خرائط Google.",
+    chipFresh: "طازج يومياً",
+    chipDelivery: "توصيل سريع",
+    chipQuality: "جودة ثابتة",
 
-    drawer_title: "Menu",
-    drawer_lang: "Language",
+    btnOrderNow: "اطلب الآن",
+    btnViewMenu: "عرض القائمة",
+    btnPromotions: "العروض",
+    btnFindUs: "اعثر علينا",
+    btnOpenMaps: "افتح في خرائط Google",
 
-    hero_title: "Authentic Iraqi Shawarma — Fresh & Fast",
-    hero_subtitle: "Real Iraqi flavor in Qatar. Order in seconds via apps, WhatsApp, or a quick call — or tap directions on Google Maps.",
+    menuPromotionsTitle: "القائمة والعروض",
+    menuPromotionsHint: "يمكنك استبدال العناصر لاحقاً (صور + أسماء + أسعار).",
 
-    trust_fresh: "✅ Fresh daily",
-    trust_fast: "⚡ Fast delivery",
-    trust_quality: "🔥 Consistent quality",
+    promoTag1: "لفترة محدودة",
+    promoTitle1: "عرض كومبو",
+    promoDesc1: "أضف بطاطس + مشروب بسعر خاص. عدّل التفاصيل لاحقاً.",
+    promoTag2: "جديد",
+    promoTitle2: "وجبة عائلية",
+    promoDesc2: "مناسبة للمشاركة. أضف العناصر والأسعار الحقيقية لاحقاً.",
+    promoTag3: "أفضل قيمة",
+    promoTitle3: "عرض الغداء",
+    promoDesc3: "سريع وسعر مناسب. حدّث العرض عند الجاهزية.",
 
-    cta_talabat: "Order on Talabat",
-    cta_snoonu: "Order on Snoonu",
-    cta_whatsapp: "Quick WhatsApp",
-    cta_call: "Direct Call",
+    bestsellersTitle: "الأكثر طلباً",
+    bestsellersHint: "الأصناف المفضلة التي يطلبها الزبائن باستمرار.",
+    best1Title: "شاورما لحم سيجنتشر",
+    best1Desc: "مناسبة لمحبي النكهة القوية.",
+    best2Title: "شاورما دجاج",
+    best2Desc: "خفيفة ولذيذة ومحبوبة.",
+    best3Title: "وجبة كومبو",
+    best3Desc: "أفضل قيمة عندما تكون جائعاً.",
 
-    hero_micro: "* Full menu will be added soon. For now: preview items and order easily.",
+    galleryTitle: "الصور",
+    galleryHint: "بعض الصور — يمكنك استبدالها بصورك الحقيقية في أي وقت.",
 
-    benefits_title: "Why people choose ALQAS AL IRAQI",
-    benefits_subtitle: "Because you want consistent taste, fast service, and easy ordering.",
-    benefit_1_title: "Authentic Iraqi taste",
-    benefit_1_desc: "Balanced seasoning, perfectly grilled shawarma, real flavor.",
-    benefit_2_title: "Easy ordering",
-    benefit_2_desc: "Choose what suits you: apps, WhatsApp, or a direct call.",
-    benefit_3_title: "Consistent quality",
-    benefit_3_desc: "Trusted ingredients and fresh preparation every day.",
+    locationTitle: "الموقع",
+    locationHint: "اضغط على الزر لفتح الاتجاهات في خرائط Google.",
+    mapPreviewText: "افتح خرائط Google لمشاهدة الموقع بدقة.",
 
-    menu_title: "Menu",
-    menu_subtitle: "You can replace items later (photos + names + prices).",
-    item_1_title: "Beef Shawarma (Signature)",
-    item_1_desc: "Bold flavor with Iraqi seasoning.",
-    item_1_price: "QAR —",
-    item_2_title: "Chicken Shawarma",
-    item_2_desc: "Tender, tasty, and loved by everyone.",
-    item_2_price: "QAR —",
-    item_3_title: "Combo Meal",
-    item_3_desc: "Shawarma + fries + drink.",
-    item_3_price: "QAR —",
-    menu_cta: "Choose order method now",
+    followUs: "تابعنا",
+    socialSoon: "حسابات التواصل الاجتماعي قريباً.",
 
-    best_title: "Bestsellers",
-    best_subtitle: "Customer favorites people reorder again and again.",
-    best_badge_1: "#1",
-    best_1_title: "Signature Beef Shawarma",
-    best_1_desc: "Perfect for bold-flavor lovers.",
-    best_badge_2: "#2",
-    best_2_title: "Chicken Shawarma",
-    best_2_desc: "Light, delicious, and popular.",
-    best_badge_3: "#3",
-    best_3_title: "Combo Meal",
-    best_3_desc: "Best value when you’re hungry.",
+    footerTagline: "شاورما عراقية أصيلة • طازج يومياً • طلب سهل",
 
-    gallery_title: "Gallery",
-    gallery_subtitle: "A few tasty shots (replace later with your official photos).",
+    orderTitle: "اختر طريقة الطلب",
+    orderTalabat: "طلبات",
+    orderSnoonu: "سنوونو",
+    orderKeeta: "كيتا",
+    orderWhatsApp: "واتساب",
+    orderCall: "اتصال",
+    orderSoon: "سيتم إضافة الرابط قريباً",
 
-    location_title: "Location",
-    location_subtitle: "Tap the button to open directions on Google Maps.",
-    open_maps: "Open in Google Maps",
-
-    footer_note: "Authentic Iraqi Shawarma • Fresh daily • Easy ordering",
-
-    btn_order: "Order Now",
-    btn_whatsapp: "WhatsApp",
-    btn_call: "Call",
-
-    modal_title: "Choose how to order",
-    modal_note: "Pick your preferred option. We'll open it instantly.",
-
-    wa_message: "السلام عليكم، أريد طلب شاورما من ALQAS AL IRAQI",
-    coming_soon: "Coming soon",
-    social_soon: "Social pages coming soon.",
-    follow_us: "Follow us",
-    menu_hint: "You can replace this menu image later."
+    menuTitle: "القائمة",
   }
 };
 
-// ------------------------------------------------------------
+function $(sel, root=document){ return root.querySelector(sel); }
+function $all(sel, root=document){ return Array.from(root.querySelectorAll(sel)); }
 
-let currentLang = "ar";
-
-function buildWhatsAppLink(message){
-  const digits = WHATSAPP_QATAR.replace(/\D/g, "");
-  return `https://wa.me/${digits}?text=${encodeURIComponent(message)}`;
+function showToast(message){
+  const toast = $("#toast");
+  if(!toast) return;
+  toast.textContent = message;
+  toast.hidden = false;
+  clearTimeout(showToast._t);
+  showToast._t = setTimeout(()=>{ toast.hidden = true; }, 2200);
 }
 
-function getWhatsAppMessage(){
-  return I18N[currentLang]?.wa_message || I18N.ar.wa_message;
-}
-
-function openOrder(key){
-  const val = ORDER_LINKS[key];
-  if (!val) return;
-
-  const url = (typeof val === "function")
-    ? (key === "whatsapp" ? val(getWhatsAppMessage()) : val())
-    : val;
-
-  if (url.startsWith("tel:") || url.includes("wa.me")) {
-    window.location.href = url;
-    return;
-  }
-  window.open(url, "_blank", "noopener,noreferrer");
-}
-
-function applyTranslations(){
-  const dict = I18N[currentLang];
-  document.querySelectorAll("[data-i18n]").forEach(el => {
-    const k = el.getAttribute("data-i18n");
-    if (dict && dict[k] !== undefined) el.textContent = dict[k];
+function setMapsLinks(){
+  $all(".js-open-maps").forEach(a=>{
+    a.href = MAPS_LINK;
   });
 }
 
-function markActiveLangButtons(lang){
-  const all = [
-    document.getElementById("langAR"),
-    document.getElementById("langEN"),
-    document.getElementById("langARMobile"),
-    document.getElementById("langENMobile"),
-  ].filter(Boolean);
+function setOrderLinks(){
+  const tal = $("#orderTalabat");
+  const sno = $("#orderSnoonu");
+  const kee = $("#orderKeeta");
+  const wa = $("#orderWhatsApp");
+  const call = $("#orderCall");
+  const waNum = $("#waNumber");
+  const callNum = $("#callNumber");
 
-  all.forEach(btn => btn.classList.remove("is-active"));
+  if(tal) tal.href = STORE_LINKS.talabat;
+  if(sno) sno.href = STORE_LINKS.snoonu;
+  if(kee) kee.href = STORE_LINKS.keeta;
+  if(wa) wa.href = `https://wa.me/${PHONE_QATAR.replace("+","")}`;
+  if(call) call.href = `tel:${PHONE_QATAR}`;
 
-  if (lang === "ar") {
-    document.getElementById("langAR")?.classList.add("is-active");
-    document.getElementById("langARMobile")?.classList.add("is-active");
-  } else {
-    document.getElementById("langEN")?.classList.add("is-active");
-    document.getElementById("langENMobile")?.classList.add("is-active");
-  }
+  if(waNum) waNum.textContent = PHONE_QATAR;
+  if(callNum) callNum.textContent = PHONE_QATAR;
 }
 
-function setLanguage(lang){
-  if (!I18N[lang]) return;
-  currentLang = lang;
-  localStorage.setItem("alqas_lang", lang);
+function applyLanguage(lang){
+  const dict = I18N[lang] || I18N.en;
+  $all("[data-i18n]").forEach(el=>{
+    const key = el.getAttribute("data-i18n");
+    if(dict[key] != null) el.innerHTML = dict[key];
+  });
 
-  document.documentElement.lang = (lang === "ar") ? "ar" : "en";
+  document.documentElement.lang = lang;
   document.documentElement.dir = (lang === "ar") ? "rtl" : "ltr";
 
-  document.body.classList.toggle("rtl", lang === "ar");
-  document.body.classList.toggle("ltr", lang === "en");
+  // Active state on all language buttons
+  const isEn = lang === "en";
+  ["#langEN", "#langENMobile"].forEach(sel => { const el = $(sel); if(el) el.classList.toggle("is-active", isEn); });
+  ["#langAR", "#langARMobile"].forEach(sel => { const el = $(sel); if(el) el.classList.toggle("is-active", !isEn); });
 
-  markActiveLangButtons(lang);
-  applyTranslations();
+  localStorage.setItem("alqas_lang", lang);
 }
 
-(function initLanguage(){
-  const saved = localStorage.getItem("alqas_lang");
-  if (saved && I18N[saved]) {
-    setLanguage(saved);
-    return;
-  }
-  setLanguage("en");
-})();
+function initLanguage(){
+  const stored = localStorage.getItem("alqas_lang");
+  const defaultLang = stored || "en"; // user requested default EN
+  applyLanguage(defaultLang);
 
-// Language buttons
-document.getElementById("langAR")?.addEventListener("click", () => setLanguage("ar"));
-document.getElementById("langEN")?.addEventListener("click", () => setLanguage("en"));
-document.getElementById("langARMobile")?.addEventListener("click", () => setLanguage("ar"));
-document.getElementById("langENMobile")?.addEventListener("click", () => setLanguage("en"));
-
-
-// Toast (small message)
-const toast = document.getElementById("toast");
-let toastTimer = null;
-function showToast(msg){
-  if (!toast) return;
-  toast.textContent = msg;
-  toast.classList.add("is-show");
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => toast.classList.remove("is-show"), 1800);
+  const bind = (id, lang) => {
+    const el = $(id);
+    if(!el) return;
+    el.addEventListener("click", ()=> applyLanguage(lang));
+  };
+  bind("#langEN", "en");
+  bind("#langAR", "ar");
+  bind("#langENMobile", "en");
+  bind("#langARMobile", "ar");
 }
 
-// Social links
-const ig = document.getElementById("igLink");
-const tt = document.getElementById("ttLink");
-const sc = document.getElementById("scLink");
-if (ig) ig.href = SOCIAL_LINKS.instagram;
-if (tt) tt.href = SOCIAL_LINKS.tiktok;
-if (sc) sc.href = SOCIAL_LINKS.snapchat;
+function openModal(modalId, overlayId){
+  const modal = $(modalId);
+  const overlay = $(overlayId);
+  if(!modal || !overlay) return;
+  overlay.hidden = false;
+  modal.hidden = false;
+  document.body.classList.add("modal-open");
+}
 
-// Maps links + iframe
-["mapsLink","mapsLinkHero","mapsLinkMenu","mapsOverlay","mapsLinkFooter","mapsLinkBar","mapsLinkTop"].forEach((id) => {
-  const a = document.getElementById(id);
-  if (a) a.href = MAPS_LINK;
-});
+function closeModal(modalId, overlayId){
+  const modal = $(modalId);
+  const overlay = $(overlayId);
+  if(!modal || !overlay) return;
+  overlay.hidden = true;
+  modal.hidden = true;
+  document.body.classList.remove("modal-open");
+}
 
-const mapFrame = document.getElementById("mapFrame");
-if (mapFrame) mapFrame.src = MAPS_EMBED;
+function initModals(){
+  // Order modal
+  $all(".js-order-now").forEach(btn=>{
+    btn.addEventListener("click", ()=>{
+      openModal("#orderModal", "#orderOverlay");
+    });
+  });
+  const closeOrder = ()=> closeModal("#orderModal", "#orderOverlay");
+  $("#orderClose")?.addEventListener("click", closeOrder);
+  $("#orderOverlay")?.addEventListener("click", closeOrder);
 
-// Quick buttons (direct)
-document.addEventListener("click", (e) => {
-  const soon = e.target.closest("[data-soon]");
-  if (soon) {
-    e.preventDefault();
-    showToast(I18N[currentLang]?.coming_soon || "Coming soon");
-    return;
-  }
+  // Menu modal
+  $all(".js-open-menu").forEach(btn=>{
+    btn.addEventListener("click", ()=>{
+      openModal("#menuModal", "#menuOverlay");
+    });
+  });
+  const closeMenu = ()=> closeModal("#menuModal", "#menuOverlay");
+  $("#menuClose")?.addEventListener("click", closeMenu);
+  $("#menuOverlay")?.addEventListener("click", closeMenu);
 
-  const btn = e.target.closest("[data-order]");
-  if (btn) {
-    e.preventDefault();
-    openOrder(btn.getAttribute("data-order"));
-    return;
-  }
-
-  const quick = e.target.closest("[data-quick]");
-  if (quick) {
-    e.preventDefault();
-    openOrder(quick.getAttribute("data-quick"));
-  }
-});
-
-// Hamburger drawer
-const hamburger = document.getElementById("hamburger");
-const drawer = document.getElementById("mobileMenu");
-const backdrop = document.getElementById("backdrop");
-const drawerClose = document.getElementById("drawerClose");
+  // ESC closes
+  document.addEventListener("keydown", (e)=>{
+    if(e.key === "Escape"){
+      closeOrder();
+      closeMenu();
+      closeDrawer();
+    }
+  });
+}
 
 function openDrawer(){
-  if (!drawer || !backdrop || !hamburger) return;
-  drawer.hidden = false;
-  backdrop.hidden = false;
-  requestAnimationFrame(() => drawer.classList.add("is-open"));
-  hamburger.setAttribute("aria-expanded", "true");
-  document.body.classList.add("noScroll");
+  const overlay = $("#drawerOverlay");
+  const drawer = $("#drawer");
+  const btn = $("#hamburgerBtn");
+  if(!overlay || !drawer || !btn) return;
+  overlay.hidden = false;
+  document.body.classList.add("drawer-open");
+  drawer.setAttribute("aria-hidden","false");
+  btn.setAttribute("aria-expanded","true");
 }
 
 function closeDrawer(){
-  if (!drawer || !backdrop || !hamburger) return;
-  drawer.classList.remove("is-open");
-  hamburger.setAttribute("aria-expanded", "false");
-  document.body.classList.remove("noScroll");
-  setTimeout(() => { drawer.hidden = true; backdrop.hidden = true; }, 220);
+  const overlay = $("#drawerOverlay");
+  const drawer = $("#drawer");
+  const btn = $("#hamburgerBtn");
+  if(!overlay || !drawer || !btn) return;
+  overlay.hidden = true;
+  document.body.classList.remove("drawer-open");
+  drawer.setAttribute("aria-hidden","true");
+  btn.setAttribute("aria-expanded","false");
 }
 
-hamburger?.addEventListener("click", () => {
-  const isOpen = hamburger.getAttribute("aria-expanded") === "true";
-  isOpen ? closeDrawer() : openDrawer();
-});
-backdrop?.addEventListener("click", closeDrawer);
-drawerClose?.addEventListener("click", closeDrawer);
-drawer?.addEventListener("click", (e) => { if (e.target.closest("a")) closeDrawer(); });
+function initDrawer(){
+  $("#hamburgerBtn")?.addEventListener("click", openDrawer);
+  $("#drawerClose")?.addEventListener("click", closeDrawer);
+  $("#drawerOverlay")?.addEventListener("click", closeDrawer);
 
-// Scroll reveal
-const revealEls = Array.from(document.querySelectorAll(".reveal"));
-const io = new IntersectionObserver(
-  (entries) => {
-    for (const entry of entries) {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("is-visible");
-        io.unobserve(entry.target);
-      }
+  // Close drawer when resizing to desktop (prevents desktop weird overlay)
+  window.addEventListener("resize", ()=>{
+    if(window.innerWidth > 980){
+      closeDrawer();
     }
-  },
-  { threshold: 0.14 }
-);
-revealEls.forEach((el) => io.observe(el));
-
-// Hide mobile bar when drawer open
-const mobileBar = document.getElementById("mobileBar");
-const obs = new MutationObserver(() => {
-  const open = hamburger?.getAttribute("aria-expanded") === "true";
-  if (mobileBar) mobileBar.style.transform = open ? "translateY(120%)" : "translateY(0)";
-});
-if (hamburger) obs.observe(hamburger, { attributes: true, attributeFilter: ["aria-expanded"] });
-
-// ------------------------------------------------------------
-// Order Modal (requested): EVERY "Order Now" opens this popup
-
-const orderModal = document.getElementById("orderModal");
-const orderModalClose = document.getElementById("orderModalClose");
-
-function openOrderModal(){
-  if (!orderModal) return;
-  orderModal.hidden = false;
-  requestAnimationFrame(() => orderModal.classList.add("is-open"));
-  document.body.classList.add("noScroll");
+  });
 }
 
-function closeOrderModal(){
-  if (!orderModal) return;
-  orderModal.classList.remove("is-open");
-  document.body.classList.remove("noScroll");
-  setTimeout(() => { orderModal.hidden = true; }, 180);
-}
-
-// Open modal
-document.addEventListener("click", (e) => {
-  const opener = e.target.closest("[data-open-order-modal]");
-  if (opener) {
-    e.preventDefault();
-    openOrderModal();
-    return;
-  }
-
-  const pick = e.target.closest("[data-modal-order]");
-  if (pick) {
-    e.preventDefault();
-    const key = pick.getAttribute("data-modal-order");
-    closeOrderModal();
-    openOrder(key);
-    return;
-  }
-});
-
-orderModalClose?.addEventListener("click", closeOrderModal);
-orderModal?.addEventListener("click", (e) => { if (e.target === orderModal) closeOrderModal(); });
-
-document.addEventListener("keydown", (e) => {
-  if (e.key === "Escape") {
-    closeOrderModal();
-    closeDrawer();
-  }
-});
-
-
-// ===== Menu Modal (Menu image preview) =====
-const menuModal = document.getElementById("menuModal");
-const menuModalClose = document.getElementById("menuModalClose");
-const menuPreviewImg = document.getElementById("menuPreviewImg");
-const menuModalImg = document.getElementById("menuModalImg");
-
-// Fallbacks in case file name changes later
-const MENU_IMAGE_CANDIDATES = [
-  "assets/menu-eng.jpg",
-  "assets/Menu%20Eng.jpg",
-  "assets/Menu%20Eng.png",
-  "assets/menu-eng.png",
-  "assets/menu-eng.svg",
-];
-
-function setMenuImage(){
-  if (!menuPreviewImg || !menuModalImg) return;
-  // try first candidate
-  menuPreviewImg.src = MENU_IMAGE_CANDIDATES[0];
-  menuModalImg.src = MENU_IMAGE_CANDIDATES[0];
-
-  // if load fails, try next
-  let idx = 0;
-  const tryNext = () => {
-    idx += 1;
-    if (idx >= MENU_IMAGE_CANDIDATES.length) return;
-    menuPreviewImg.src = MENU_IMAGE_CANDIDATES[idx];
-    menuModalImg.src = MENU_IMAGE_CANDIDATES[idx];
+function initSmoothScroll(){
+  const go = (target)=>{
+    const el = document.querySelector(target);
+    if(el){
+      el.scrollIntoView({behavior:"smooth", block:"start"});
+      closeDrawer();
+    }
   };
-  menuPreviewImg.onerror = tryNext;
-  menuModalImg.onerror = tryNext;
-}
-setMenuImage();
 
-function openMenuModal(){
-  if (!menuModal) return;
-  menuModal.hidden = false;
-  requestAnimationFrame(() => menuModal.classList.add("is-open"));
-  document.body.classList.add("noScroll");
-}
-
-function closeMenuModal(){
-  if (!menuModal) return;
-  menuModal.classList.remove("is-open");
-  document.body.classList.remove("noScroll");
-  setTimeout(() => { menuModal.hidden = true; }, 180);
-}
-
-document.addEventListener("click", (e) => {
-  const opener = e.target.closest("[data-open-menu-modal]");
-  if (opener) {
-    e.preventDefault();
-    openMenuModal();
-    return;
-  }
-});
-
-menuModalClose?.addEventListener("click", closeMenuModal);
-menuModal?.addEventListener("click", (e) => {
-  if (e.target === menuModal) closeMenuModal();
-});
-
-
-// ===== Hero Carousel (auto + dots + arrows + swipe) =====
-function setupHeroCarousel(){
-  const carousel = document.querySelector("[data-carousel]");
-  if (!carousel) return;
-
-  const slides = Array.from(carousel.querySelectorAll(".carousel__img"));
-  const dotsWrap = carousel.querySelector(".carousel__dots");
-  let dots = Array.from(carousel.querySelectorAll(".dot"));
-  const prev = carousel.querySelector(".carousel__nav.prev");
-  const next = carousel.querySelector(".carousel__nav.next");
-
-  // Remove any broken images safely
-  slides.forEach((img, i) => {
-    img.addEventListener("error", () => {
-      img.remove();
-      if (dots[i]) dots[i].remove();
-      dots = Array.from(carousel.querySelectorAll(".dot"));
+  // elements with data-scroll
+  $all(".js-scroll").forEach(el=>{
+    el.addEventListener("click", (e)=>{
+      const ds = el.getAttribute("data-scroll");
+      const href = el.getAttribute("href");
+      const target = ds || href;
+      if(target && target.startsWith("#")){
+        e.preventDefault();
+        go(target);
+      }
     });
   });
+}
+
+function initSocial(){
+  $all(".js-social").forEach(a=>{
+    a.addEventListener("click", (e)=>{
+      e.preventDefault();
+      showToast(document.documentElement.lang === "ar" ? "قريباً" : "Coming soon");
+    });
+  });
+}
+
+function initCarousel(){
+  const slides = $all("#heroCarousel .hero-slide");
+  const dotsWrap = $("#heroDots");
+  if(slides.length === 0 || !dotsWrap) return;
 
   let idx = 0;
-  let timer = null;
+  const dots = slides.map((_, i)=>{
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "hero-dot" + (i===0 ? " is-active" : "");
+    b.addEventListener("click", ()=>{ set(i); restart(); });
+    dotsWrap.appendChild(b);
+    return b;
+  });
 
-  function setActive(i){
-    const imgs = Array.from(carousel.querySelectorAll(".carousel__img"));
-    dots = Array.from(carousel.querySelectorAll(".dot"));
-    if (!imgs.length) return;
-
-    idx = (i + imgs.length) % imgs.length;
-    imgs.forEach((el, k) => el.classList.toggle("is-active", k === idx));
-    dots.forEach((d, k) => d.classList.toggle("is-active", k === idx));
+  function set(i){
+    idx = (i + slides.length) % slides.length;
+    slides.forEach((s, k)=> s.classList.toggle("is-active", k===idx));
+    dots.forEach((d, k)=> d.classList.toggle("is-active", k===idx));
   }
 
+  $("#heroPrev")?.addEventListener("click", ()=>{ set(idx-1); restart(); });
+  $("#heroNext")?.addEventListener("click", ()=>{ set(idx+1); restart(); });
+
+  let t = null;
   function start(){
-    if (timer) clearInterval(timer);
-    timer = setInterval(() => setActive(idx + 1), 4500);
+    t = setInterval(()=> set(idx+1), 5500);
   }
-
-  function stop(){
-    if (timer) clearInterval(timer);
-    timer = null;
+  function restart(){
+    clearInterval(t);
+    start();
   }
-
-  // Dots click
-  dotsWrap?.addEventListener("click", (e) => {
-    const d = e.target.closest(".dot");
-    if (!d) return;
-    const all = Array.from(dotsWrap.querySelectorAll(".dot"));
-    const i = all.indexOf(d);
-    if (i >= 0) setActive(i);
-    start();
-  });
-
-  prev?.addEventListener("click", () => { setActive(idx - 1); start(); });
-  next?.addEventListener("click", () => { setActive(idx + 1); start(); });
-
-  // Swipe support
-  let x0 = null;
-  carousel.addEventListener("touchstart", (e) => {
-    x0 = e.touches?.[0]?.clientX ?? null;
-    stop();
-  }, { passive: true });
-
-  carousel.addEventListener("touchend", (e) => {
-    const x1 = e.changedTouches?.[0]?.clientX ?? null;
-    if (x0 != null && x1 != null){
-      const dx = x1 - x0;
-      if (Math.abs(dx) > 36){
-        dx > 0 ? setActive(idx - 1) : setActive(idx + 1);
-      }
-    }
-    x0 = null;
-    start();
-  }, { passive: true });
-
-  // Pause when tab hidden
-  document.addEventListener("visibilitychange", () => {
-    if (document.hidden) stop();
-    else start();
-  });
-
-  setActive(0);
   start();
 }
-setupHeroCarousel();
+
+function init(){
+  setMapsLinks();
+  setOrderLinks();
+  initLanguage();
+  initDrawer();
+  initSmoothScroll();
+  initModals();
+  initSocial();
+  initCarousel();
+}
+
+document.addEventListener("DOMContentLoaded", init);
