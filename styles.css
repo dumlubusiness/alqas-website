@@ -675,10 +675,13 @@ html[dir="rtl"] .hero-overlay{
 
 /* Responsive */
 @media (max-width: 980px){
-  .nav-links{display:none}
-  .hamburger{display:flex}
-  .brand{min-width: 0}
-  .header-social{display:none}
+  .desktop-nav{display:none;}
+  .nav-links{display:none;}
+  .hamburger{display:flex;}
+  .brand{min-width: 0;}
+  .header-social{display:none;}
+  .header-inner{justify-content:space-between;}
+  .header-actions{margin-left:auto; flex-wrap:nowrap; gap:10px;}
 }
 
 @media (max-width: 720px){
