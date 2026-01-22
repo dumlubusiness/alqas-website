@@ -29,6 +29,22 @@ const I18N = {
     chipDelivery: "Fast delivery",
     chipQuality: "Consistent quality",
 
+
+    toggleDelivery: "Delivery",
+    togglePickup: "Pickup",
+    enterAddressLabel: "Enter your address",
+    addressPlaceholder: "Enter your location",
+    findAddressOnMap: "Find address on the map",
+
+    exploreMenuTitle: "Explore our menu",
+    exploreMenuSub: "Quick categories",
+    catShawarma: "Shawarma",
+    catPlates: "Plates",
+    catGrills: "Grills",
+    catSides: "Sides",
+    catSalads: "Salads",
+    catSauces: "Sauces & dips",
+
     btnOrderNow: "Order Now",
     btnViewMenu: "View Menu",
     btnPromotions: "Promotions",
@@ -93,6 +109,23 @@ const I18N = {
     chipFresh: "طازج يومياً",
     chipDelivery: "توصيل سريع",
     chipQuality: "جودة ثابتة",
+
+
+    toggleDelivery: "توصيل",
+    togglePickup: "استلام",
+    enterAddressLabel: "أدخل عنوانك",
+    addressPlaceholder: "أدخل موقعك",
+    findAddressOnMap: "اعثر على العنوان على الخريطة",
+
+    exploreMenuTitle: "استكشف قائمتنا",
+    exploreMenuSub: "أقسام سريعة",
+    catShawarma: "شاورما",
+    catPlates: "أطباق",
+    catGrills: "مشاوي",
+    catSides: "أطباق جانبية",
+    catSalads: "سلطات",
+    catSauces: "صلصات وتغميس",
+
 
     btnOrderNow: "اطلب الآن",
     btnViewMenu: "عرض القائمة",
@@ -188,6 +221,12 @@ function applyLanguage(lang){
   $all("[data-i18n]").forEach(el=>{
     const key = el.getAttribute("data-i18n");
     if(dict[key] != null) el.innerHTML = dict[key];
+  });
+
+  // Translate placeholders: [data-i18n-placeholder]
+  $all("[data-i18n-placeholder]").forEach(el=>{
+    const key = el.getAttribute("data-i18n-placeholder");
+    if(key && dict[key] != null) el.setAttribute("placeholder", dict[key]);
   });
 
   document.documentElement.lang = lang;
@@ -413,8 +452,30 @@ function initCarousel(){
   start();
 }
 
+
+function initOrderPanel(){
+  const modeBtns = $all(".js-order-mode");
+  if(modeBtns.length){
+    const setMode = (mode)=>{
+      modeBtns.forEach(b=> b.classList.toggle("is-active", b.dataset.mode === mode));
+      document.body.dataset.orderMode = mode;
+    };
+    modeBtns.forEach(b=> b.addEventListener("click", ()=> setMode(b.dataset.mode)));
+    setMode(document.body.dataset.orderMode || "delivery");
+  }
+
+  // Open Google Maps for any element that needs it
+  $all(".js-open-maps").forEach(el=>{
+    el.addEventListener("click", (e)=>{
+      e.preventDefault();
+      if(MAPS_LINK) window.open(MAPS_LINK, "_blank", "noopener,noreferrer");
+    });
+  });
+}
+
 function init(){
   setMapsLinks();
+  initOrderPanel();
   setOrderLinks();
   initLanguage();
   initDrawer();
