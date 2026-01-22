@@ -1,3 +1,4 @@
+document.documentElement.classList.add('js');
 /* ALQAS website - clean, responsive, and stable
    - Default language: EN (user requested "default language 1")
    - Replace these links later with your real store links (Talabat/Snoonu/Keeta)
@@ -323,6 +324,51 @@ function initSmoothScroll(){
   });
 }
 
+
+function initRipple(){
+  const reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduced) return;
+
+  document.querySelectorAll('.btn').forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      if (btn.matches('[disabled], .is-disabled')) return;
+      const rect = btn.getBoundingClientRect();
+      const size = Math.max(rect.width, rect.height);
+      const cx = (e.clientX ?? (rect.left + rect.width/2));
+      const cy = (e.clientY ?? (rect.top + rect.height/2));
+      const x = cx - rect.left - size/2;
+      const y = cy - rect.top - size/2;
+
+      const ripple = document.createElement('span');
+      ripple.className = 'ripple';
+      ripple.style.width = ripple.style.height = size + 'px';
+      ripple.style.left = x + 'px';
+      ripple.style.top = y + 'px';
+      btn.appendChild(ripple);
+      window.setTimeout(() => ripple.remove(), 700);
+    }, { passive: true });
+  });
+}
+
+function initReveal(){
+  document.querySelectorAll('section, .card').forEach(el => el.classList.add('reveal'));
+  const reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduced || !('IntersectionObserver' in window)){
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('is-visible'));
+    return;
+  }
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting){
+        entry.target.classList.add('is-visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+}
+
+
 function initSocial(){
   $all(".js-social").forEach(a=>{
     a.addEventListener("click", (e)=>{
@@ -376,6 +422,13 @@ function init(){
   initModals();
   initSocial();
   initCarousel();
+  initRipple();
+  initReveal();
+  // page opening animation
+  requestAnimationFrame(() => document.documentElement.classList.add('is-loaded'));
+
 }
 
 document.addEventListener("DOMContentLoaded", init);
+
+window.addEventListener('load', () => document.documentElement.classList.add('is-loaded'));
