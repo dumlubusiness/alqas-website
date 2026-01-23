@@ -55,14 +55,15 @@ const I18N = {
     menuPromotionsHint: "You can replace items later (photos + names + prices).",
 
     promoTag1: "Limited time",
-    promoTitle1: "Combo Offer",
-    promoDesc1: "Add fries + drink with a special price. Replace details later.",
+    promoTitle1: "Combo Upgrade",
+    promoDesc1: "Upgrade any shawarma with fries + drink. Limited-time value.",
     promoTag2: "New",
-    promoTitle2: "Family Meal",
-    promoDesc2: "Perfect for sharing. Add real items and pricing later.",
+    promoTitle2: "Family Feast",
+    promoDesc2: "Made for sharing — big portions, great value. Limited time.",
     promoTag3: "Best value",
-    promoTitle3: "Lunch Deal",
-    promoDesc3: "Quick + affordable. Update the offer when ready.",
+    promoTitle3: "Lunch Express",
+    promoDesc3: "Fast lunch combo — perfect for busy days. Limited time.",
+    promoCTA: "Order now",
 
     bestsellersTitle: "Bestsellers",
     bestsellersHint: "Customer favorites people reorder again and again.",
@@ -137,14 +138,15 @@ const I18N = {
     menuPromotionsHint: "يمكنك استبدال العناصر لاحقاً (صور + أسماء + أسعار).",
 
     promoTag1: "لفترة محدودة",
-    promoTitle1: "عرض كومبو",
+    promoTitle1: "ترقية كومبو",
     promoDesc1: "أضف بطاطس + مشروب بسعر خاص. عدّل التفاصيل لاحقاً.",
     promoTag2: "جديد",
-    promoTitle2: "وجبة عائلية",
+    promoTitle2: "وليمة العائلة",
     promoDesc2: "مناسبة للمشاركة. أضف العناصر والأسعار الحقيقية لاحقاً.",
     promoTag3: "أفضل قيمة",
-    promoTitle3: "عرض الغداء",
+    promoTitle3: "غداء سريع",
     promoDesc3: "سريع وسعر مناسب. حدّث العرض عند الجاهزية.",
+    promoCTA: "اطلب الآن",
 
     bestsellersTitle: "الأكثر طلباً",
     bestsellersHint: "الأصناف المفضلة التي يطلبها الزبائن باستمرار.",
@@ -473,6 +475,25 @@ function initOrderPanel(){
   });
 }
 
+
+function initToTop(){
+  const btn = document.getElementById('toTop');
+  if (!btn) return;
+
+  const toggle = () => {
+    if (window.scrollY > 420) btn.classList.add('show');
+    else btn.classList.remove('show');
+  };
+
+  window.addEventListener('scroll', toggle, { passive: true });
+  toggle();
+
+  btn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+}
+
+
 function init(){
   setMapsLinks();
   initOrderPanel();
@@ -484,6 +505,7 @@ function init(){
   initSocial();
   initCarousel();
   initRipple();
+  initToTop();
   initReveal();
   // page opening animation
   requestAnimationFrame(() => document.documentElement.classList.add('is-loaded'));

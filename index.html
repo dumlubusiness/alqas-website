@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ALQAS AL IRAQI â¢ Shawarma</title>
-  <meta name="description" content="ALQAS AL IRAQI â Authentic Iraqi Shawarma in Qatar. Order via apps, WhatsApp, or a quick call." />
+  <title>ALQAS AL IRAQI • Shawarma</title>
+  <meta name="description" content="ALQAS AL IRAQI — Authentic Iraqi Shawarma in Qatar. Order via apps, WhatsApp, or a quick call." />
   <link rel="icon" href="assets/logo.png" />
   <link rel="stylesheet" href="styles.css" />
 </head>
@@ -71,7 +71,7 @@
           <div class="drawer-sub" data-i18n="brandSub">Authentic Iraqi Shawarma in Qatar</div>
         </div>
       </div>
-      <button class="drawer-close" id="drawerClose" type="button" aria-label="Close menu">Ã</button>
+      <button class="drawer-close" id="drawerClose" type="button" aria-label="Close menu">&times;</button>
     </div>
 
     <div class="drawer-lang">
@@ -121,8 +121,8 @@
       <img class="hero-slide" src="assets/hero-4.jpg" alt="" />
       <div class="hero-overlay"></div>
 
-      <button class="hero-arrow hero-prev" id="heroPrev" type="button" aria-label="Previous image">â¹</button>
-      <button class="hero-arrow hero-next" id="heroNext" type="button" aria-label="Next image">âº</button>
+      <button class="hero-arrow hero-prev" id="heroPrev" type="button" aria-label="Previous image">‹</button>
+      <button class="hero-arrow hero-next" id="heroNext" type="button" aria-label="Next image">›</button>
       <div class="hero-dots" id="heroDots" aria-label="Carousel dots"></div>
     </div>
 
@@ -133,24 +133,8 @@
           Real Iraqi flavor in Qatar. Order in seconds via apps, WhatsApp, or a quick call — or tap directions on Google Maps.
         </p>
 
-        <!-- KFC-style order panel (UI only; can be wired later) -->
-        <div class="order-panel reveal" aria-label="Order panel">
-          <div class="order-toggle" role="tablist" aria-label="Order type">
-            <button class="toggle-btn is-active js-order-mode" type="button" data-mode="delivery" data-i18n="toggleDelivery">Delivery</button>
-            <button class="toggle-btn js-order-mode" type="button" data-mode="pickup" data-i18n="togglePickup">Pickup</button>
-          </div>
-
-          <div class="order-address">
-            <div class="order-address-label" data-i18n="enterAddressLabel">Enter your address</div>
-            <div class="order-input-row">
-              <button type="button" class="geo-btn js-open-maps" aria-label="Open maps">📍</button>
-              <input class="order-input" type="text" data-i18n-placeholder="addressPlaceholder" placeholder="Enter your location" />
-            </div>
-            <a class="map-link js-open-maps" href="#" data-i18n="findAddressOnMap">Find address on the map</a>
-          </div>
-        </div>
-
-        <div class="chips" aria-label="Highlights">
+        
+<div class="chips" aria-label="Highlights">
           <span class="chip" data-i18n="chipFresh">Fresh daily</span>
           <span class="chip" data-i18n="chipDelivery">Fast delivery</span>
           <span class="chip" data-i18n="chipQuality">Consistent quality</span>
@@ -239,18 +223,24 @@
           <div class="promo-grid">
             <article class="card promo-card">
               <div class="promo-badge" data-i18n="promoTag1">Limited time</div>
+              <img class="promo-img" src="assets/offers/offer-1.jpg" alt="Offer 1">
               <h3 data-i18n="promoTitle1">Combo Offer</h3>
               <p class="muted" data-i18n="promoDesc1">Add fries + drink with a special price. Replace details later.</p>
+              <button class="btn small js-order-now" type="button" data-i18n="promoCTA">Order Now</button>
             </article>
             <article class="card promo-card">
               <div class="promo-badge" data-i18n="promoTag2">New</div>
+              <img class="promo-img" src="assets/offers/offer-2.jpg" alt="Offer 2">
               <h3 data-i18n="promoTitle2">Family Meal</h3>
               <p class="muted" data-i18n="promoDesc2">Perfect for sharing. Add real items and pricing later.</p>
+              <button class="btn small js-order-now" type="button" data-i18n="promoCTA">Order Now</button>
             </article>
             <article class="card promo-card">
               <div class="promo-badge" data-i18n="promoTag3">Best value</div>
+              <img class="promo-img" src="assets/offers/offer-3.jpg" alt="Offer 3">
               <h3 data-i18n="promoTitle3">Lunch Deal</h3>
               <p class="muted" data-i18n="promoDesc3">Quick + affordable. Update the offer when ready.</p>
+              <button class="btn small js-order-now" type="button" data-i18n="promoCTA">Order Now</button>
             </article>
           </div>
 
@@ -289,7 +279,7 @@
           <div class="best-rank">#3</div>
           <div>
             <h3 data-i18n="best3Title">Combo Meal</h3>
-            <p class="muted" data-i18n="best3Desc">Best value when youâre hungry.</p>
+            <p class="muted" data-i18n="best3Desc">Best value when you’re hungry.</p>
           </div>
         </div>
       </div>
@@ -305,7 +295,7 @@
     <div class="container">
       <div class="section-head">
         <h2 data-i18n="galleryTitle">Gallery</h2>
-        <p class="muted" data-i18n="galleryHint">A few favorites â replace with your real photos anytime.</p>
+        <p class="muted" data-i18n="galleryHint">A few favorites — replace with your real photos anytime.</p>
       </div>
 
       <div class="gallery-grid">
@@ -326,7 +316,7 @@
 
       <div class="card location-card">
         <div class="map-placeholder" role="img" aria-label="Map preview">
-          <iframe class="mapFrame" src="https://www.openstreetmap.org/export/embed.html?bbox=51.45%2C25.25%2C51.61%2C25.33&layer=mapnik&marker=25.286%2C51.531" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Map preview"></iframe>
+          <iframe class="mapFrame" src="https://www.openstreetmap.org/export/embed.html?bbox=51.45%2C25.22%2C51.62%2C25.35&amp;layer=mapnik&amp;marker=25.2854%2C51.5310" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Map preview"></iframe>
           <div class="mapOverlay" aria-hidden="true">
             <div class="map-pin"></div>
             <div class="map-bubble" data-i18n="mapPreviewText">Open Google Maps to view the exact location.</div>
@@ -345,7 +335,7 @@
     <div class="container footer-inner">
       <div>
         <div class="footer-title" data-i18n="brandTitle">ALQAS AL IRAQI</div>
-        <div class="muted" data-i18n="footerTagline">Authentic Iraqi Shawarma â¢ Fresh daily â¢ Easy ordering</div>
+        <div class="muted" data-i18n="footerTagline">Authentic Iraqi Shawarma • Fresh daily • Easy ordering</div>
       </div>
 
       <div class="footer-social">
@@ -375,7 +365,7 @@
   <div class="modal" id="orderModal" role="dialog" aria-modal="true" aria-labelledby="orderTitle" hidden>
     <div class="modal-head">
       <h3 id="orderTitle" data-i18n="orderTitle">Choose how to order</h3>
-      <button class="icon-btn" id="orderClose" type="button" aria-label="Close">Ã</button>
+      <button class="icon-btn" id="orderClose" type="button" aria-label="Close">&times;</button>
     </div>
 
     <div class="modal-body">
@@ -407,7 +397,7 @@
   <div class="modal modal-wide" id="menuModal" role="dialog" aria-modal="true" aria-labelledby="menuTitle" hidden>
     <div class="modal-head">
       <h3 id="menuTitle" data-i18n="menuTitle">Menu</h3>
-      <button class="icon-btn" id="menuClose" type="button" aria-label="Close">Ã</button>
+      <button class="icon-btn" id="menuClose" type="button" aria-label="Close">&times;</button>
     </div>
     <div class="modal-body">
       <img class="menu-full" src="assets/menu-eng.jpg" alt="Menu" />
@@ -418,5 +408,13 @@
   <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
 
   <script src="script.js"></script>
+
+  <!-- Back to top -->
+  <button class="to-top" id="toTop" aria-label="Back to top" title="Back to top">
+    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path d="M12 5l7 7-1.4 1.4L13 8.8V19h-2V8.8L6.4 13.4 5 12l7-7z" fill="currentColor"/>
+    </svg>
+  </button>
+
 </body>
 </html>
