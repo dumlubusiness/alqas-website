@@ -6,6 +6,12 @@
   <title>ALQAS AL IRAQI • Shawarma</title>
   <meta name="description" content="ALQAS AL IRAQI — Authentic Iraqi Shawarma in Qatar. Order via apps, WhatsApp, or a quick call." />
   <link rel="icon" href="assets/logo.png" />
+
+  <!-- Fonts (fast-food: bold + clean) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet" />
+
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -112,73 +118,42 @@
     </div>
   </aside>
 
-  <!-- Hero -->
-  <section class="hero" aria-label="Hero">
-    <div class="hero-carousel" id="heroCarousel" aria-hidden="true">
-      <img class="hero-slide is-active" src="assets/hero.jpg" alt="" />
-      <img class="hero-slide" src="assets/hero-2.jpg" alt="" />
-      <img class="hero-slide" src="assets/hero-3.jpg" alt="" />
-      <img class="hero-slide" src="assets/hero-4.jpg" alt="" />
-      <div class="hero-overlay"></div>
-
-      <button class="hero-arrow hero-prev" id="heroPrev" type="button" aria-label="Previous image">‹</button>
-      <button class="hero-arrow hero-next" id="heroNext" type="button" aria-label="Next image">›</button>
-      <div class="hero-dots" id="heroDots" aria-label="Carousel dots"></div>
-    </div>
-
-    <div class="container hero-content">
-      <div class="hero-card">
-        <h1 class="hero-title" data-i18n="heroTitle">Authentic Iraqi Shawarma — Fresh &amp; Fast</h1>
-        <p class="hero-desc" data-i18n="heroDesc">
-          Real Iraqi flavor in Qatar. Order in seconds via apps, WhatsApp, or a quick call — or tap directions on Google Maps.
-        </p>
-
-        
-<div class="chips" aria-label="Highlights">
-          <span class="chip" data-i18n="chipFresh">Fresh daily</span>
-          <span class="chip" data-i18n="chipDelivery">Fast delivery</span>
-          <span class="chip" data-i18n="chipQuality">Consistent quality</span>
-        </div>
-
-        <div class="hero-buttons">
-          <button class="btn btn-order js-order-now" type="button" data-i18n="btnOrderNow">Order Now</button>
-          <button class="btn btn-gold js-scroll" type="button" data-scroll="#menu" data-i18n="btnViewMenu">View Menu</button>
-          <button class="btn btn-ghost js-scroll" type="button" data-scroll="#promotions" data-i18n="btnPromotions">Promotions</button>
-          <a class="btn btn-ghost js-open-maps" href="#" target="_blank" rel="noopener" data-i18n="btnFindUs">Find Us</a>
-        </div>
-
-        <div class="hero-follow">
-          <div class="follow-row">
-            <span class="follow-label" data-i18n="followUs">Follow us</span>
-            <a class="social-btn js-social" href="#" data-social="instagram" aria-label="Instagram"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-  <rect x="4" y="4" width="16" height="16" rx="4" ry="4"></rect>
-  <circle cx="12" cy="12" r="3.2"></circle>
-  <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"></circle>
-</svg></a>
-            <a class="social-btn js-social" href="#" data-social="tiktok" aria-label="TikTok"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-  <path d="M16 3v10.2a3.8 3.8 0 1 1-2-3.4V6.1c1.8 1.8 3.9 2.8 6 3V7.1c-2.3-.2-4.4-1.6-5-4.1H16z"></path>
-</svg></a>
-            <a class="social-btn js-social" href="#" data-social="snapchat" aria-label="Snapchat"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-  <path d="M12 2c-3.3 0-6 2.7-6 6v7.6c0 .9.9 1.5 1.7 1.1l1.3-.6 1.3.8c.4.2.9.2 1.3 0l1.4-.8 1.4.8c.4.2.9.2 1.3 0l1.3-.8 1.3.6c.8.4 1.7-.2 1.7-1.1V8c0-3.3-2.7-6-6-6z"></path>
-  <circle cx="9.5" cy="10" r="0.9" fill="currentColor" stroke="none"></circle>
-  <circle cx="14.5" cy="10" r="0.9" fill="currentColor" stroke="none"></circle>
-</svg></a>
-          </div>
-          <small class="muted" data-i18n="socialSoon">Social pages coming soon.</small>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- Menu + Promotions -->
   <section class="section" id="menu">
     <div class="container">
-      <div class="section-head">
-        <h2 data-i18n="menuPromotionsTitle">Menu &amp; Promotions</h2>
-        <p class="muted" data-i18n="menuPromotionsHint">You can replace items later (photos + names + prices).</p>
+      <!-- Menu Hero (shows first on load) -->
+      <div class="menu-hero reveal" aria-label="Menu and promotions banner">
+        <div class="hero-carousel hero-carousel--menu" id="heroCarousel" aria-hidden="true">
+          <img class="hero-slide is-active" src="assets/hero.jpg" alt="" />
+          <img class="hero-slide" src="assets/hero-2.jpg" alt="" />
+          <img class="hero-slide" src="assets/hero-3.jpg" alt="" />
+          <img class="hero-slide" src="assets/hero-4.jpg" alt="" />
+          <img class="hero-slide" src="assets/Carousel-1.svg" alt="" />
+          <img class="hero-slide" src="assets/Carousel-2.svg" alt="" />
+          <div class="hero-overlay hero-overlay--dark"></div>
+
+          <button class="hero-arrow prev" id="heroPrev" type="button" aria-label="Previous slide">‹</button>
+          <button class="hero-arrow next" id="heroNext" type="button" aria-label="Next slide">›</button>
+
+          <div class="hero-dots" id="heroDots" aria-label="Carousel dots"></div>
+        </div>
+
+        <div class="menu-hero-content">
+          <div class="menu-hero-panel">
+            <h1 class="menu-hero-title" data-i18n="menuPromotionsTitle">Menu &amp; Promotions</h1>
+            <p class="menu-hero-sub" data-i18n="menuPromotionsHint">You can replace items later (photos + names + prices).</p>
+
+            <div class="menu-hero-actions">
+              <button class="btn btn-gold js-open-menu" type="button" data-i18n="btnViewMenu">View Menu</button>
+              <button class="btn btn-order js-order-now" type="button" data-i18n="btnOrderNow">Order Now</button>
+            </div>
+
+            <div class="menu-hero-note" data-i18n="heroQuickLine">Explore our menu • Quick categories</div>
+          </div>
+        </div>
       </div>
 
-      <h3 class="subhead" data-i18n="exploreMenuTitle">Explore our menu</h3>
+<h3 class="subhead" data-i18n="exploreMenuTitle">Explore our menu</h3>
       <p class="muted" data-i18n="exploreMenuSub">Quick categories</p>
 
       <div class="category-grid">
