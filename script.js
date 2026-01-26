@@ -374,7 +374,7 @@ function initRipple(){
   const reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if (reduced) return;
 
-  document.querySelectorAll('.btn').forEach((btn) => {
+  document.querySelectorAll('.btn, .lang-btn, .social-btn, .nav-link, .hamburger, .hero-dot, .hero-arrow').forEach((btn) => {
     btn.addEventListener('click', (e) => {
       if (btn.matches('[disabled], .is-disabled')) return;
       const rect = btn.getBoundingClientRect();
