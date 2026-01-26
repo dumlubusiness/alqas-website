@@ -1,5 +1,4 @@
 document.documentElement.classList.add('js');
-window.addEventListener('DOMContentLoaded', ()=> requestAnimationFrame(()=>document.documentElement.classList.add('is-loaded')), { once: true });
 /* ALQAS website - clean, responsive, and stable
    - Default language: EN (user requested "default language 1")
    - Replace these links later with your real store links (Talabat/Snoonu/Keeta)
@@ -248,11 +247,9 @@ function applyLanguage(lang){
 }
 
 function initLanguage(){
-
-  // Default to English on first visit; remember user's choice after.
+  // Default to English on first visit, but remember the user's last choice.
   const saved = localStorage.getItem("alqas_lang");
-  const start = (saved === "ar" || saved === "en") ? saved : "en";
-  applyLanguage(start);
+  applyLanguage(saved || "en");
 
   const bind = (id, lang) => {
     const el = $(id);
@@ -359,7 +356,7 @@ function initSmoothScroll(){
   };
 
   // elements with data-scroll
-  $all('[data-scroll], .js-scroll').forEach(el=>{
+  $all(".js-scroll").forEach(el=>{
     el.addEventListener("click", (e)=>{
       const ds = el.getAttribute("data-scroll");
       const href = el.getAttribute("href");
