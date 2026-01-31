@@ -39,6 +39,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const menuImg = document.getElementById("menuImg");
   const menuModalImg = document.getElementById("menuModalImg");
 
+  // Hero (photo / slider)
+  const heroPhoto = document.querySelector(".hero-photo");
+  const heroSlide = document.getElementById("heroSlide");
+
   // Order modal links
   const linkTalabat = document.getElementById("linkTalabat");
   const linkSnoonu = document.getElementById("linkSnoonu");
@@ -212,6 +216,37 @@ document.addEventListener("DOMContentLoaded", () => {
   if (year) year.textContent = String(new Date().getFullYear());
 
   // -------------------------
+  // HERO SLIDER (subtle, optional)
+  // Edit these to change the hero photos order
+  // -------------------------
+  if (heroSlide) {
+    const prefersReducedMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
+    const heroImages = [
+      "assets/hero-3.jpg",
+      "assets/hero-2.jpg",
+      "assets/hero-4.jpg"
+    ];
+
+    // Preload for smooth switching
+    heroImages.forEach((src) => {
+      const img = new Image();
+      img.src = src;
+    });
+
+    let idx = 0;
+    const rotate = () => {
+      idx = (idx + 1) % heroImages.length;
+      heroPhoto?.classList.add("is-fade");
+      window.setTimeout(() => { heroSlide.src = heroImages[idx]; }, 170);
+      window.setTimeout(() => { heroPhoto?.classList.remove("is-fade"); }, 360);
+    };
+
+    if (!prefersReducedMotion) {
+      window.setInterval(rotate, 5200);
+    }
+  }
+
+  // -------------------------
   // i18n (EN/AR)
   // -------------------------
   const i18n = {
@@ -370,6 +405,57 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // default language
   applyLang("en");
+
+  // -------------------------
+  // Mobile polish: hide the floating Order button until user scrolls
+  // -------------------------
+  const fab = document.querySelector(".fab");
+  const updateFab = () => {
+    if (!fab) return;
+    const isMobile = window.matchMedia("(max-width: 780px)").matches;
+    if (!isMobile) {
+      fab.classList.remove("is-hidden");
+      return;
+    }
+    const show = window.scrollY > 260;
+    fab.classList.toggle("is-hidden", !show);
+  };
+
+  window.addEventListener("scroll", updateFab, { passive: true });
+  window.addEventListener("resize", updateFab);
+  updateFab();
+
+  // -------------------------
+  // Hero slider (replace the washed photo look)
+  // Edit the list below if you want different hero photos.
+  // -------------------------
+  const heroImages = [
+    "assets/hero-3.jpg",
+    "assets/hero-2.jpg",
+    "assets/hero-4.jpg"
+  ];
+
+  if (heroSlide) {
+    // Preload
+    heroImages.forEach((src) => {
+      const img = new Image();
+      img.src = src;
+    });
+
+    // Set a crisp default
+    heroSlide.src = heroImages[0];
+
+    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (!prefersReduced) {
+      let idx = 0;
+      setInterval(() => {
+        idx = (idx + 1) % heroImages.length;
+        if (heroPhoto) heroPhoto.classList.add("is-fade");
+        setTimeout(() => { heroSlide.src = heroImages[idx]; }, 180);
+        setTimeout(() => { if (heroPhoto) heroPhoto.classList.remove("is-fade"); }, 360);
+      }, 5200);
+    }
+  }
 
   // -------------------------
   // Reveal on scroll
