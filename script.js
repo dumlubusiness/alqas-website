@@ -216,37 +216,6 @@ document.addEventListener("DOMContentLoaded", () => {
   if (year) year.textContent = String(new Date().getFullYear());
 
   // -------------------------
-  // HERO SLIDER (subtle, optional)
-  // Edit these to change the hero photos order
-  // -------------------------
-  if (heroSlide) {
-    const prefersReducedMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
-    const heroImages = [
-      "assets/hero-3.jpg",
-      "assets/hero-2.jpg",
-      "assets/hero-4.jpg"
-    ];
-
-    // Preload for smooth switching
-    heroImages.forEach((src) => {
-      const img = new Image();
-      img.src = src;
-    });
-
-    let idx = 0;
-    const rotate = () => {
-      idx = (idx + 1) % heroImages.length;
-      heroPhoto?.classList.add("is-fade");
-      window.setTimeout(() => { heroSlide.src = heroImages[idx]; }, 170);
-      window.setTimeout(() => { heroPhoto?.classList.remove("is-fade"); }, 360);
-    };
-
-    if (!prefersReducedMotion) {
-      window.setInterval(rotate, 5200);
-    }
-  }
-
-  // -------------------------
   // i18n (EN/AR)
   // -------------------------
   const i18n = {
@@ -426,35 +395,15 @@ document.addEventListener("DOMContentLoaded", () => {
   updateFab();
 
   // -------------------------
-  // Hero slider (replace the washed photo look)
-  // Edit the list below if you want different hero photos.
+  // Hero image (keep it simple + stable on all mobiles)
+  // Replace the file below with your best product photo.
   // -------------------------
-  const heroImages = [
-    "assets/hero-3.jpg",
-    "assets/hero-2.jpg",
-    "assets/hero-4.jpg"
-  ];
-
   if (heroSlide) {
-    // Preload
-    heroImages.forEach((src) => {
-      const img = new Image();
-      img.src = src;
-    });
+    heroSlide.src = "assets/hero-3.jpg";
 
-    // Set a crisp default
-    heroSlide.src = heroImages[0];
-
-    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (!prefersReduced) {
-      let idx = 0;
-      setInterval(() => {
-        idx = (idx + 1) % heroImages.length;
-        if (heroPhoto) heroPhoto.classList.add("is-fade");
-        setTimeout(() => { heroSlide.src = heroImages[idx]; }, 180);
-        setTimeout(() => { if (heroPhoto) heroPhoto.classList.remove("is-fade"); }, 360);
-      }, 5200);
-    }
+    // OPTIONAL: turn it into a slider by using an array + interval.
+    // const heroImages = ["assets/hero-3.jpg","assets/hero-2.jpg","assets/hero-4.jpg"]; 
+    // (Ask me and I'll enable the slider cleanly.)
   }
 
   // -------------------------

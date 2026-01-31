@@ -145,6 +145,9 @@ section{ scroll-margin-top: calc(var(--headerH) + 14px); }
   transition: transform .14s ease, box-shadow .14s ease, background .14s ease, border-color .14s ease;
   position:relative;
   overflow:hidden; /* needed for ripple */
+  max-width: 100%;
+  white-space: normal;
+  text-align: center;
 }
 .btn:active{ transform: scale(.98); }
 
@@ -287,6 +290,12 @@ section{ scroll-margin-top: calc(var(--headerH) + 14px); }
   align-items:center;
 }
 
+/* Prevent grid children from forcing horizontal overflow (mobile Safari fix) */
+.hero-copy,
+.hero-card{
+  min-width: 0;
+}
+
 .pill{
   display:inline-flex;
   align-items:center;
@@ -306,6 +315,7 @@ section{ scroll-margin-top: calc(var(--headerH) + 14px); }
   font-size: clamp(28px, 4vw, 46px);
   line-height: 1.06;
   letter-spacing: -0.6px;
+  overflow-wrap: anywhere;
 }
 .lead{
   margin:0 0 18px;
@@ -313,6 +323,7 @@ section{ scroll-margin-top: calc(var(--headerH) + 14px); }
   font-size: 16px;
   max-width: 54ch;
   font-weight: 650;
+  overflow-wrap: anywhere;
 }
 .hero-cta{
   display:flex;
@@ -358,6 +369,7 @@ section{ scroll-margin-top: calc(var(--headerH) + 14px); }
   height: 100%;
   display:block;
   object-fit: cover;
+  object-position: 70% 55%;
   transform: scale(1.02);
   transition: opacity .32s ease, transform .65s ease;
 }
@@ -376,7 +388,7 @@ section{ scroll-margin-top: calc(var(--headerH) + 14px); }
   content:"";
   position:absolute;
   inset:0;
-  background: linear-gradient(180deg, rgba(0,0,0,.03), rgba(0,0,0,.16));
+  background: linear-gradient(180deg, rgba(0,0,0,.02), rgba(0,0,0,.08));
   pointer-events:none;
 }
 .hero-stats{
@@ -767,13 +779,22 @@ textarea{ min-height: 120px; resize: vertical; }
 
 /* ---------------- Responsive ---------------- */
 @media (max-width: 980px){
-  .hero{ padding: 26px 0 18px; }
-  .hero-grid{ grid-template-columns: 1fr; }
-  .hero-photo{ height: 220px; }
+  .hero{ padding: 18px 0 16px; }
+  .hero-grid{ grid-template-columns: 1fr; align-items: start; }
+
+  /* Show the food photo first on mobile (more appetizing) */
+  .hero-card{ order: -1; }
+  .hero-photo{ height: 240px; }
+
+  .hero-copy h1{
+    font-size: clamp(26px, 7.6vw, 40px);
+    line-height: 1.08;
+  }
+  .lead{ font-size: 15px; }
 
   /* More professional mobile hero: full-width CTA + swipeable benefit chips */
   .hero-cta{ display:grid; grid-template-columns: 1fr; }
-  .hero-cta .btn-lg{ width:100%; }
+  .hero-cta .btn{ width:100%; }
 
   .hero-stats{
     display:flex;
@@ -785,7 +806,7 @@ textarea{ min-height: 120px; resize: vertical; }
   }
   .hero-stats::-webkit-scrollbar{ display:none; }
   .stat{
-    min-width: 210px;
+    min-width: 230px;
     scroll-snap-align: start;
   }
 
@@ -795,7 +816,7 @@ textarea{ min-height: 120px; resize: vertical; }
   .gallery-grid .gitem{ grid-column: span 6; }
 }
 @media (max-width: 780px){
-  :root{ --headerH: 66px; }
+  :root{ --headerH: 62px; }
 
   .desktop{ display:none; }
   .mobile{ display:grid; }
@@ -804,8 +825,14 @@ textarea{ min-height: 120px; resize: vertical; }
 
   .brand{ min-width: 0; }
   .brand-logo{ width:38px; height:38px; border-radius: 12px; }
+  .brand-text strong{ font-size: 16px; }
   .brand-text span{ font-size: 11px; }
-  .lang-btn{ padding: 6px 10px; }
+  .lang-switch{ padding: 3px; }
+  .lang-btn{ padding: 6px 9px; }
+
+  /* Better text layout on small screens */
+  .section-head{ flex-direction: column; align-items: flex-start; }
+  .section-head p{ max-width: 60ch; }
 
   /* Keep floating button away from iOS bottom bar */
   .fab{
@@ -813,6 +840,17 @@ textarea{ min-height: 120px; resize: vertical; }
     right: calc(16px + env(safe-area-inset-right));
   }
   body{ padding-bottom: 86px; }
+}
+
+@media (max-width: 420px){
+  /* Slightly larger usable area on very small screens */
+  .container{ width: min(var(--container), calc(100% - 28px)); }
+
+  .brand-text span{ display:none; }
+  .lang-btn{ font-size: 11px; padding: 6px 8px; }
+
+  .hero-photo{ height: 220px; }
+  .stat{ min-width: 210px; }
 }
 
 /* RTL tweaks */
