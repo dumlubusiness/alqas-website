@@ -3,393 +3,369 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ALQAS AL IRAQI • Shawarma</title>
-  <meta name="description" content="ALQAS AL IRAQI — Authentic Iraqi Shawarma in Qatar. Order via apps, WhatsApp, or a quick call." />
-  <link rel="icon" href="assets/logo.png" />
+  <meta name="theme-color" content="#ffffff" />
+  <title>ALQAS AL IRAQI • Premium Iraqi Shawarma</title>
 
-  <!-- Fonts (fast-food: bold + clean) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet" />
+  <!-- Fonts (optional, safe to remove) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700;800;900&family=Tajawal:wght@500;700;800;900&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="styles.css" />
 </head>
-<body>
-  <a class="skip-link" href="#menu">Skip to content</a>
 
-  <!-- Header -->
+<body>
+  <!-- Sticky Header -->
   <header class="header" id="top">
     <div class="container header-inner">
-      <a class="brand" href="#top" aria-label="Home">
-        <img class="brand-logo" src="assets/logo.png" alt="ALQAS AL IRAQI logo" />
+      <a class="brand" href="#top" aria-label="ALQAS home">
+        <img class="brand-logo" src="assets/logo.png" alt="ALQAS logo" />
         <div class="brand-text">
-          <div class="brand-title" data-i18n="brandTitle">ALQAS AL IRAQI</div>
-          <div class="brand-sub" data-i18n="brandSub">Authentic Iraqi Shawarma in Qatar</div>
+          <strong>ALQAS</strong>
+          <span data-i18n="tagline">Premium Iraqi Shawarma</span>
         </div>
       </a>
 
-      <nav class="nav-links" aria-label="Primary">
-        <a class="nav-link" href="#menu" data-i18n="navMenu">Menu</a>
-        <a class="nav-link" href="#bestsellers" data-i18n="navBestsellers">Bestsellers</a>
-        <a class="nav-link" href="#gallery" data-i18n="navGallery">Gallery</a>
-        <a class="nav-link" href="#location" data-i18n="navLocation">Location</a>
+      <nav class="nav desktop" aria-label="Primary">
+        <a href="#menu" data-i18n="navMenu">Menu</a>
+        <a href="#offers" data-i18n="navOffers">Offers</a>
+        <a href="#gallery" data-i18n="navGallery">Gallery</a>
+        <a href="#location" data-i18n="navLocation">Location</a>
+        <a href="#contact" data-i18n="navContact">Contact</a>
       </nav>
 
       <div class="header-actions">
         <div class="lang-switch" role="group" aria-label="Language">
-          <button class="lang-btn is-active" id="langEN" type="button">EN</button>
-          <button class="lang-btn" id="langAR" type="button">AR</button>
+          <button type="button" id="langEN" class="lang-btn is-active">EN</button>
+          <button type="button" id="langAR" class="lang-btn">AR</button>
         </div>
 
-        <div class="header-social" aria-label="Social">
-          <a class="social-btn js-social" href="#" data-social="instagram" aria-label="Instagram"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-  <rect x="4" y="4" width="16" height="16" rx="4" ry="4"></rect>
-  <circle cx="12" cy="12" r="3.2"></circle>
-  <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"></circle>
-</svg></a>
-          <a class="social-btn js-social" href="#" data-social="tiktok" aria-label="TikTok"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-  <path d="M16 3v10.2a3.8 3.8 0 1 1-2-3.4V6.1c1.8 1.8 3.9 2.8 6 3V7.1c-2.3-.2-4.4-1.6-5-4.1H16z"></path>
-</svg></a>
-          <a class="social-btn js-social" href="#" data-social="snapchat" aria-label="Snapchat"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-  <path d="M12 2c-3.3 0-6 2.7-6 6v7.6c0 .9.9 1.5 1.7 1.1l1.3-.6 1.3.8c.4.2.9.2 1.3 0l1.4-.8 1.4.8c.4.2.9.2 1.3 0l1.3-.8 1.3.6c.8.4 1.7-.2 1.7-1.1V8c0-3.3-2.7-6-6-6z"></path>
-  <circle cx="9.5" cy="10" r="0.9" fill="currentColor" stroke="none"></circle>
-  <circle cx="14.5" cy="10" r="0.9" fill="currentColor" stroke="none"></circle>
-</svg></a>
-        </div>
+        <button type="button" class="btn btn-primary desktop js-open-order" data-ripple>
+          <span data-i18n="btnOrderNow">Order Now</span>
+        </button>
 
-        <button class="btn btn-order js-order-now" type="button" data-i18n="btnOrderNow">Order Now</button>
-
-        <button class="hamburger" id="hamburgerBtn" type="button" aria-label="Open menu" aria-expanded="false">
-          <span></span><span></span><span></span>
+        <button class="icon-btn mobile" type="button" id="openDrawer" aria-label="Open menu" aria-controls="drawer" aria-expanded="false">
+          <span class="hamburger" aria-hidden="true"></span>
         </button>
       </div>
     </div>
   </header>
 
-  <!-- Mobile drawer -->
-  <div class="drawer-overlay" id="drawerOverlay" hidden></div>
-  <aside class="drawer" id="drawer" aria-hidden="true">
+  <!-- Mobile Drawer -->
+  <div class="backdrop" id="drawerBackdrop" hidden></div>
+  <aside class="drawer" id="drawer" aria-label="Mobile menu" aria-hidden="true">
     <div class="drawer-top">
-      <div class="drawer-brand">
-        <img class="drawer-logo" src="assets/logo.png" alt="" />
-        <div>
-          <div class="drawer-title" data-i18n="brandTitle">ALQAS AL IRAQI</div>
-          <div class="drawer-sub" data-i18n="brandSub">Authentic Iraqi Shawarma in Qatar</div>
-        </div>
-      </div>
-      <button class="drawer-close" id="drawerClose" type="button" aria-label="Close menu">&times;</button>
+      <img src="assets/logo.png" class="drawer-logo" alt="ALQAS logo" />
+      <button class="icon-btn" type="button" id="closeDrawer" aria-label="Close menu">
+        ✕
+      </button>
     </div>
 
-    <div class="drawer-lang">
-      <button class="lang-btn is-active" id="langENMobile" type="button">EN</button>
-      <button class="lang-btn" id="langARMobile" type="button">AR</button>
-    </div>
+    <nav class="drawer-links">
+      <a href="#menu" class="js-close-drawer" data-i18n="navMenu">Menu</a>
+      <a href="#offers" class="js-close-drawer" data-i18n="navOffers">Offers</a>
+      <a href="#gallery" class="js-close-drawer" data-i18n="navGallery">Gallery</a>
+      <a href="#location" class="js-close-drawer" data-i18n="navLocation">Location</a>
+      <a href="#contact" class="js-close-drawer" data-i18n="navContact">Contact</a>
 
-    <nav class="drawer-nav" aria-label="Mobile">
-      <a class="drawer-link js-scroll" href="#menu" data-i18n="navMenu">Menu</a>
-      <a class="drawer-link js-scroll" href="#promotions" data-i18n="navPromotions">Promotions</a>
-      <a class="drawer-link js-scroll" href="#bestsellers" data-i18n="navBestsellers">Bestsellers</a>
-      <a class="drawer-link js-scroll" href="#gallery" data-i18n="navGallery">Gallery</a>
-      <a class="drawer-link js-scroll" href="#location" data-i18n="navLocation">Location</a>
+      <button type="button" class="btn btn-primary full js-open-order" data-ripple>
+        <span data-i18n="btnOrderNow">Order Now</span>
+      </button>
     </nav>
-
-    <div class="drawer-cta">
-      <button class="btn btn-order js-order-now" type="button" data-i18n="btnOrderNow">Order Now</button>
-      <a class="btn btn-ghost js-open-maps" href="#" target="_blank" rel="noopener" data-i18n="btnOpenMaps">Open in Google Maps</a>
-    </div>
-
-    <div class="drawer-social">
-      <div class="drawer-social-row">
-        <a class="social-btn js-social" href="#" data-social="instagram" aria-label="Instagram"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-  <rect x="4" y="4" width="16" height="16" rx="4" ry="4"></rect>
-  <circle cx="12" cy="12" r="3.2"></circle>
-  <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"></circle>
-</svg></a>
-        <a class="social-btn js-social" href="#" data-social="tiktok" aria-label="TikTok"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-  <path d="M16 3v10.2a3.8 3.8 0 1 1-2-3.4V6.1c1.8 1.8 3.9 2.8 6 3V7.1c-2.3-.2-4.4-1.6-5-4.1H16z"></path>
-</svg></a>
-        <a class="social-btn js-social" href="#" data-social="snapchat" aria-label="Snapchat"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-  <path d="M12 2c-3.3 0-6 2.7-6 6v7.6c0 .9.9 1.5 1.7 1.1l1.3-.6 1.3.8c.4.2.9.2 1.3 0l1.4-.8 1.4.8c.4.2.9.2 1.3 0l1.3-.8 1.3.6c.8.4 1.7-.2 1.7-1.1V8c0-3.3-2.7-6-6-6z"></path>
-  <circle cx="9.5" cy="10" r="0.9" fill="currentColor" stroke="none"></circle>
-  <circle cx="14.5" cy="10" r="0.9" fill="currentColor" stroke="none"></circle>
-</svg></a>
-      </div>
-      <p class="muted" data-i18n="socialSoon">Social pages coming soon.</p>
-    </div>
   </aside>
 
-  <!-- Menu + Promotions -->
-  <section class="section" id="menu">
-    <div class="container">
-      <!-- Menu Hero (shows first on load) -->
-      <div class="menu-hero reveal" aria-label="Menu and promotions banner">
-        <div class="hero-carousel hero-carousel--menu" id="heroCarousel" aria-hidden="true">
-          <img class="hero-slide is-active" src="assets/hero.jpg" alt="" />
-          <img class="hero-slide" src="assets/hero-2.jpg" alt="" />
-          <img class="hero-slide" src="assets/hero-3.jpg" alt="" />
-          <img class="hero-slide" src="assets/hero-4.jpg" alt="" />
-          <img class="hero-slide" src="assets/Carousel-1.svg" alt="" />
-          <img class="hero-slide" src="assets/Carousel-2.svg" alt="" />
-          <div class="hero-overlay hero-overlay--dark"></div>
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <div class="pill" data-i18n="pill">Fresh • Fast • Authentic</div>
+          <h1 data-i18n="heroTitle">Authentic Iraqi Flavor — Made Fresh Daily.</h1>
+          <p class="lead" data-i18n="heroDesc">
+            The legendary shawarma of Al Wakra. Premium ingredients, generous portions, and fast delivery.
+          </p>
 
-          <button class="hero-arrow prev" id="heroPrev" type="button" aria-label="Previous slide">‹</button>
-          <button class="hero-arrow next" id="heroNext" type="button" aria-label="Next slide">›</button>
+          <div class="hero-cta">
+            <button type="button" class="btn btn-primary btn-lg js-open-order" data-ripple>
+              <span data-i18n="btnOrderDelivery">Order Delivery</span>
+            </button>
+            <button type="button" class="btn btn-ghost btn-lg js-scroll-menu" data-ripple>
+              <span data-i18n="btnViewMenu">View Menu</span>
+            </button>
+          </div>
 
-          <div class="hero-dots" id="heroDots" aria-label="Carousel dots"></div>
+          <div class="trust">
+            <span class="dot"></span>
+            <span data-i18n="trust">Open daily • 12:00 PM – 02:00 AM</span>
+          </div>
         </div>
 
-        <div class="menu-hero-content">
-          <div class="menu-hero-panel">
-            <h1 class="menu-hero-title" data-i18n="menuPromotionsTitle">Menu &amp; Promotions</h1>
-            <p class="menu-hero-sub" data-i18n="menuPromotionsHint">You can replace items later (photos + names + prices).</p>
+        <div class="hero-card reveal">
+          <div class="hero-photo" role="img" aria-label="Food photo"></div>
+          <div class="hero-stats">
+            <div class="stat">
+              <strong data-i18n="stat1v">Fast delivery</strong>
+              <span data-i18n="stat1k">Talabat • Snoonu • WhatsApp</span>
+            </div>
+            <div class="stat">
+              <strong data-i18n="stat2v">Made fresh</strong>
+              <span data-i18n="stat2k">Daily prep • consistent taste</span>
+            </div>
+            <div class="stat">
+              <strong data-i18n="stat3v">Family-friendly</strong>
+              <span data-i18n="stat3k">Takeaway • dine-in vibes</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-            <div class="menu-hero-actions">
-              <button class="btn btn-gold js-open-menu" type="button" data-i18n="btnViewMenu">View Menu</button>
-              <button class="btn btn-order js-order-now" type="button" data-i18n="btnOrderNow">Order Now</button>
+    <!-- Offers -->
+    <section class="section" id="offers">
+      <div class="container">
+        <div class="section-head">
+          <h2 data-i18n="offersTitle">Today’s Offers</h2>
+          <p data-i18n="offersDesc">Tap an offer to view it bigger.</p>
+        </div>
+
+        <div class="cards-3">
+          <article class="card offer reveal js-lightbox" data-img="assets/offers/offer-1.jpg">
+            <img src="assets/offers/offer-1.jpg" alt="Offer 1">
+            <div class="card-body">
+              <h3 data-i18n="offer1t">Combo Deals</h3>
+              <p data-i18n="offer1d">Best value meals for lunch & late night.</p>
+            </div>
+          </article>
+
+          <article class="card offer reveal js-lightbox" data-img="assets/offers/offer-2.jpg">
+            <img src="assets/offers/offer-2.jpg" alt="Offer 2">
+            <div class="card-body">
+              <h3 data-i18n="offer2t">Family Box</h3>
+              <p data-i18n="offer2d">Perfect for sharing — quick and filling.</p>
+            </div>
+          </article>
+
+          <article class="card offer reveal js-lightbox" data-img="assets/offers/offer-3.jpg">
+            <img src="assets/offers/offer-3.jpg" alt="Offer 3">
+            <div class="card-body">
+              <h3 data-i18n="offer3t">Weekend Special</h3>
+              <p data-i18n="offer3d">Limited-time promos — don’t miss out.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Menu -->
+    <section class="section section-soft" id="menu">
+      <div class="container">
+        <div class="section-head">
+          <h2 data-i18n="menuTitle">Menu</h2>
+          <p data-i18n="menuDesc">Zoom in to read easily.</p>
+        </div>
+
+        <div class="menu-wrap reveal">
+          <button class="menu-zoom-hint js-menu-modal" type="button" data-ripple>
+            <span data-i18n="menuHint">Tap to open full-screen</span>
+          </button>
+          <img class="menu-img" id="menuImg" src="assets/menu-eng.jpg" alt="Menu image">
+        </div>
+      </div>
+    </section>
+
+    <!-- Gallery -->
+    <section class="section" id="gallery">
+      <div class="container">
+        <div class="section-head">
+          <h2 data-i18n="galleryTitle">Gallery</h2>
+          <p data-i18n="galleryDesc">Real photos from our kitchen & customers.</p>
+        </div>
+
+        <div class="gallery-grid">
+          <button class="gitem reveal js-lightbox" type="button" data-img="assets/hero-2.jpg" aria-label="Open photo 1">
+            <img src="assets/hero-2.jpg" alt="Gallery photo 1">
+          </button>
+          <button class="gitem reveal js-lightbox" type="button" data-img="assets/hero-3.jpg" aria-label="Open photo 2">
+            <img src="assets/hero-3.jpg" alt="Gallery photo 2">
+          </button>
+          <button class="gitem reveal js-lightbox" type="button" data-img="assets/hero-4.jpg" aria-label="Open photo 3">
+            <img src="assets/hero-4.jpg" alt="Gallery photo 3">
+          </button>
+          <button class="gitem reveal js-lightbox" type="button" data-img="assets/gallery-1.jpg" aria-label="Open photo 4">
+            <img src="assets/gallery-1.jpg" alt="Gallery photo 4">
+          </button>
+          <button class="gitem reveal js-lightbox" type="button" data-img="assets/gallery-2.jpg" aria-label="Open photo 5">
+            <img src="assets/gallery-2.jpg" alt="Gallery photo 5">
+          </button>
+          <button class="gitem reveal js-lightbox" type="button" data-img="assets/galler-2.jpg" aria-label="Open photo 6">
+            <img src="assets/galler-2.jpg" alt="Gallery photo 6">
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Location -->
+    <section class="section section-soft" id="location">
+      <div class="container">
+        <div class="section-head">
+          <h2 data-i18n="locationTitle">Visit Our Branch</h2>
+          <p data-i18n="locationDesc">Al Wakra Main Street • Qatar</p>
+        </div>
+
+        <div class="location-grid reveal">
+          <div class="map">
+            <!-- IMPORTANT:
+                 This "q=..." embed works without needing an exact place ID.
+                 If you have a Google Maps Embed URL, replace the src with it. -->
+            <iframe
+              title="Map"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              src="https://www.google.com/maps?q=Al%20Wakra%20Main%20Street%20Qatar&output=embed">
+            </iframe>
+          </div>
+
+          <div class="location-card">
+            <div class="line">
+              <span class="k" data-i18n="addrLabel">Address</span>
+              <span class="v" data-i18n="addrValue">Al Wakra Main Street, Qatar</span>
+            </div>
+            <div class="line">
+              <span class="k" data-i18n="hoursLabel">Hours</span>
+              <span class="v" data-i18n="hoursValue">12:00 PM – 02:00 AM</span>
             </div>
 
-            <div class="menu-hero-note" data-i18n="heroQuickLine">Explore our menu • Quick categories</div>
+            <div class="location-actions">
+              <button type="button" class="btn btn-primary js-open-maps" data-ripple>
+                <span data-i18n="btnDirections">Get Directions</span>
+              </button>
+              <button type="button" class="btn btn-ghost js-open-order" data-ripple>
+                <span data-i18n="btnOrderNow">Order Now</span>
+              </button>
+            </div>
+
+            <div class="social">
+              <a class="social-btn" href="#" target="_blank" rel="noopener" aria-label="Instagram">
+                <img src="assets/icons/instagram.svg" alt="">
+              </a>
+              <a class="social-btn" href="#" target="_blank" rel="noopener" aria-label="TikTok">
+                <img src="assets/icons/tiktok.svg" alt="">
+              </a>
+              <a class="social-btn" href="#" target="_blank" rel="noopener" aria-label="Snapchat">
+                <img src="assets/icons/snapchat.svg" alt="">
+              </a>
+            </div>
+
+            <p class="muted small" data-i18n="socialHint">
+              Tip: edit social links inside <strong>script.js</strong>.
+            </p>
           </div>
         </div>
       </div>
+    </section>
 
-<h3 class="subhead" data-i18n="exploreMenuTitle">Explore our menu</h3>
-      <p class="muted" data-i18n="exploreMenuSub">Quick categories</p>
+    <!-- Contact -->
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="section-head">
+          <h2 data-i18n="contactTitle">Contact</h2>
+          <p data-i18n="contactDesc">Fast reply on WhatsApp.</p>
+        </div>
 
-      <div class="category-grid">
-        <a class="cat-card reveal" href="#menuPreview" data-scroll>
-          <img src="assets/hero-2.jpg" alt="Shawarma" />
-          <div class="cat-label" data-i18n="catShawarma">Shawarma</div>
-        </a>
-        <a class="cat-card reveal" href="#menuPreview" data-scroll>
-          <img src="assets/hero-3.jpg" alt="Plates" />
-          <div class="cat-label" data-i18n="catPlates">Plates</div>
-        </a>
-        <a class="cat-card reveal" href="#menuPreview" data-scroll>
-          <img src="assets/hero.jpg" alt="Grills" />
-          <div class="cat-label" data-i18n="catGrills">Grills</div>
-        </a>
-        <a class="cat-card reveal" href="#menuPreview" data-scroll>
-          <img src="assets/gallery-1.jpg" alt="Sides" />
-          <div class="cat-label" data-i18n="catSides">Sides</div>
-        </a>
-        <a class="cat-card reveal" href="#menuPreview" data-scroll>
-          <img src="assets/gallery-2.jpg" alt="Salads" />
-          <div class="cat-label" data-i18n="catSalads">Salads</div>
-        </a>
-        <a class="cat-card reveal" href="#menuPreview" data-scroll>
-          <img src="assets/hero-4.jpg" alt="Sauces" />
-          <div class="cat-label" data-i18n="catSauces">Sauces</div>
-        </a>
+        <div class="contact-grid reveal">
+          <div class="contact-card">
+            <h3 data-i18n="contactQuick">Quick Actions</h3>
+            <div class="contact-actions">
+              <a class="btn btn-primary" data-ripple href="https://wa.me/97455026741" target="_blank" rel="noopener">
+                <span data-i18n="btnWhatsApp">WhatsApp</span>
+              </a>
+              <a class="btn btn-ghost" data-ripple href="tel:+97455026741">
+                <span data-i18n="btnCall">Call</span>
+              </a>
+            </div>
+            <p class="muted" data-i18n="contactNote">
+              Delivery platforms are available from the Order popup.
+            </p>
+          </div>
+
+          <form class="contact-card" id="contactForm">
+            <h3 data-i18n="contactFormTitle">Send a message</h3>
+
+            <label class="field">
+              <span data-i18n="fName">Name</span>
+              <input type="text" name="name" placeholder="Your name" required />
+            </label>
+
+            <label class="field">
+              <span data-i18n="fPhone">Phone</span>
+              <input type="tel" name="phone" placeholder="+974..." required />
+            </label>
+
+            <label class="field">
+              <span data-i18n="fMsg">Message</span>
+              <textarea name="message" placeholder="Write your message..." required></textarea>
+            </label>
+
+            <button class="btn btn-primary" type="submit" data-ripple>
+              <span data-i18n="btnSend">Send</span>
+            </button>
+
+            <p class="muted small" data-i18n="formHint">
+              This form opens WhatsApp with your message (no backend needed).
+            </p>
+          </form>
+        </div>
       </div>
+    </section>
+  </main>
 
+  <!-- Floating Mobile CTA -->
+  <button class="fab js-open-order" type="button" aria-label="Order now" data-ripple>
+    <span data-i18n="fab">Order</span>
+  </button>
 
-      <div class="two-col">
-        <div class="card menu-card">
-          <div class="menu-preview" id="menuPreview">
-            <img src="assets/menu-eng.jpg" alt="Menu preview" />
-          </div>
-          <div class="menu-actions">
-            <button class="btn btn-gold js-open-menu" type="button" data-i18n="btnViewMenu">View Menu</button>
-          </div>
-        </div>
+  <!-- Order Modal -->
+  <div class="modal" id="orderModal" hidden aria-hidden="true">
+    <div class="modal-backdrop js-close-all" tabindex="-1" aria-label="Close"></div>
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="orderTitle">
+      <button class="icon-btn modal-close js-close-all" type="button" aria-label="Close">✕</button>
+      <h3 id="orderTitle" data-i18n="orderTitle">Order Delivery</h3>
+      <p class="muted" data-i18n="orderDesc">Choose your favorite platform.</p>
 
-        <div class="promotions" id="promotions">
-          <div class="promo-grid">
-            <article class="card promo-card">
-              <div class="promo-badge" data-i18n="promoTag1">Limited time</div>
-              <img class="promo-img" src="assets/offers/offer-1.jpg" alt="Offer 1">
-              <h3 data-i18n="promoTitle1">Combo Offer</h3>
-              <p class="muted" data-i18n="promoDesc1">Add fries + drink with a special price. Replace details later.</p>
-              <button class="btn small js-order-now" type="button" data-i18n="promoCTA">Order Now</button>
-            </article>
-            <article class="card promo-card">
-              <div class="promo-badge" data-i18n="promoTag2">New</div>
-              <img class="promo-img" src="assets/offers/offer-2.jpg" alt="Offer 2">
-              <h3 data-i18n="promoTitle2">Family Meal</h3>
-              <p class="muted" data-i18n="promoDesc2">Perfect for sharing. Add real items and pricing later.</p>
-              <button class="btn small js-order-now" type="button" data-i18n="promoCTA">Order Now</button>
-            </article>
-            <article class="card promo-card">
-              <div class="promo-badge" data-i18n="promoTag3">Best value</div>
-              <img class="promo-img" src="assets/offers/offer-3.jpg" alt="Offer 3">
-              <h3 data-i18n="promoTitle3">Lunch Deal</h3>
-              <p class="muted" data-i18n="promoDesc3">Quick + affordable. Update the offer when ready.</p>
-              <button class="btn small js-order-now" type="button" data-i18n="promoCTA">Order Now</button>
-            </article>
-          </div>
-
-          <div class="promo-actions">
-            <button class="btn btn-order js-order-now" type="button" data-i18n="btnOrderNow">Order Now</button>
-          </div>
-        </div>
+      <div class="platforms">
+        <a class="platform" data-ripple target="_blank" rel="noopener" id="linkTalabat" href="#">Talabat</a>
+        <a class="platform" data-ripple target="_blank" rel="noopener" id="linkSnoonu" href="#">Snoonu</a>
+        <a class="platform platform-wa" data-ripple target="_blank" rel="noopener" id="linkWhatsApp" href="#">WhatsApp</a>
+        <a class="platform" data-ripple id="linkCall" href="#">Call</a>
       </div>
     </div>
-  </section>
+  </div>
 
-  <!-- Bestsellers -->
-  <section class="section" id="bestsellers">
-    <div class="container">
-      <div class="section-head">
-        <h2 data-i18n="bestsellersTitle">Bestsellers</h2>
-        <p class="muted" data-i18n="bestsellersHint">Customer favorites people reorder again and again.</p>
-      </div>
-
-      <div class="bestsellers-grid">
-        <div class="card best-card">
-          <div class="best-rank">#1</div>
-          <div>
-            <h3 data-i18n="best1Title">Signature Beef Shawarma</h3>
-            <p class="muted" data-i18n="best1Desc">Perfect for bold-flavor lovers.</p>
-          </div>
-        </div>
-        <div class="card best-card">
-          <div class="best-rank">#2</div>
-          <div>
-            <h3 data-i18n="best2Title">Chicken Shawarma</h3>
-            <p class="muted" data-i18n="best2Desc">Light, delicious, and popular.</p>
-          </div>
-        </div>
-        <div class="card best-card">
-          <div class="best-rank">#3</div>
-          <div>
-            <h3 data-i18n="best3Title">Combo Meal</h3>
-            <p class="muted" data-i18n="best3Desc">Best value when you’re hungry.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="center">
-        <button class="btn btn-order js-order-now" type="button" data-i18n="btnOrderNow">Order Now</button>
-      </div>
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" hidden aria-hidden="true">
+    <div class="lightbox-backdrop js-close-lightbox" tabindex="-1"></div>
+    <div class="lightbox-card" role="dialog" aria-modal="true">
+      <button class="icon-btn lightbox-close js-close-lightbox" type="button" aria-label="Close">✕</button>
+      <img id="lightboxImg" alt="Preview" />
     </div>
-  </section>
+  </div>
 
-  <!-- Gallery -->
-  <section class="section" id="gallery">
-    <div class="container">
-      <div class="section-head">
-        <h2 data-i18n="galleryTitle">Gallery</h2>
-        <p class="muted" data-i18n="galleryHint">A few favorites — replace with your real photos anytime.</p>
-      </div>
-
-      <div class="gallery-grid">
-        <img class="gallery-img" src="assets/gallery-1.jpg" alt="Shawarma" loading="lazy" />
-        <img class="gallery-img" src="assets/gallery-2.jpg" alt="Shawarma" loading="lazy" />
-        <img class="gallery-img" src="assets/galler-2.jpg" alt="Shawarma" loading="lazy" />
-      </div>
+  <!-- Menu Fullscreen Modal -->
+  <div class="lightbox" id="menuModal" hidden aria-hidden="true">
+    <div class="lightbox-backdrop js-close-menu" tabindex="-1"></div>
+    <div class="lightbox-card lightbox-menu" role="dialog" aria-modal="true">
+      <button class="icon-btn lightbox-close js-close-menu" type="button" aria-label="Close">✕</button>
+      <img id="menuModalImg" alt="Menu full screen" />
     </div>
-  </section>
+  </div>
 
-  <!-- Location -->
-  <section class="section" id="location">
-    <div class="container">
-      <div class="section-head">
-        <h2 data-i18n="locationTitle">Location</h2>
-        <p class="muted" data-i18n="locationHint">Tap the button to open directions on Google Maps.</p>
-      </div>
-
-      <div class="card location-card">
-        <div class="map-placeholder" role="img" aria-label="Map preview">
-          <iframe class="mapFrame" src="https://www.openstreetmap.org/export/embed.html?bbox=51.45%2C25.22%2C51.62%2C25.35&amp;layer=mapnik&amp;marker=25.2854%2C51.5310" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Map preview"></iframe>
-          <div class="mapOverlay" aria-hidden="true">
-            <div class="map-pin"></div>
-            <div class="map-bubble" data-i18n="mapPreviewText">Open Google Maps to view the exact location.</div>
-          </div>
-        </div>
-
-        <div class="location-actions">
-          <a class="btn btn-gold js-open-maps" href="#" target="_blank" rel="noopener" data-i18n="btnOpenMaps">Open in Google Maps</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
   <footer class="footer">
     <div class="container footer-inner">
-      <div>
-        <div class="footer-title" data-i18n="brandTitle">ALQAS AL IRAQI</div>
-        <div class="muted" data-i18n="footerTagline">Authentic Iraqi Shawarma • Fresh daily • Easy ordering</div>
-      </div>
-
-      <div class="footer-social">
-        <span class="muted" data-i18n="followUs">Follow us</span>
-        <a class="social-btn js-social" href="#" data-social="instagram" aria-label="Instagram"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-  <rect x="4" y="4" width="16" height="16" rx="4" ry="4"></rect>
-  <circle cx="12" cy="12" r="3.2"></circle>
-  <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"></circle>
-</svg></a>
-        <a class="social-btn js-social" href="#" data-social="tiktok" aria-label="TikTok"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-  <path d="M16 3v10.2a3.8 3.8 0 1 1-2-3.4V6.1c1.8 1.8 3.9 2.8 6 3V7.1c-2.3-.2-4.4-1.6-5-4.1H16z"></path>
-</svg></a>
-        <a class="social-btn js-social" href="#" data-social="snapchat" aria-label="Snapchat"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-  <path d="M12 2c-3.3 0-6 2.7-6 6v7.6c0 .9.9 1.5 1.7 1.1l1.3-.6 1.3.8c.4.2.9.2 1.3 0l1.4-.8 1.4.8c.4.2.9.2 1.3 0l1.3-.8 1.3.6c.8.4 1.7-.2 1.7-1.1V8c0-3.3-2.7-6-6-6z"></path>
-  <circle cx="9.5" cy="10" r="0.9" fill="currentColor" stroke="none"></circle>
-  <circle cx="14.5" cy="10" r="0.9" fill="currentColor" stroke="none"></circle>
-</svg></a>
-      </div>
-    </div>
-    <div class="container footer-bottom">
-      <small class="muted" data-i18n="socialSoon">Social pages coming soon.</small>
+      <p>© <span id="year"></span> ALQAS AL IRAQI</p>
+      <a href="#top" class="to-top" data-ripple>↑ <span data-i18n="backTop">Back to top</span></a>
     </div>
   </footer>
 
-  <!-- Order modal -->
-  <div class="modal-overlay" id="orderOverlay" hidden></div>
-  <div class="modal" id="orderModal" role="dialog" aria-modal="true" aria-labelledby="orderTitle" hidden>
-    <div class="modal-head">
-      <h3 id="orderTitle" data-i18n="orderTitle">Choose how to order</h3>
-      <button class="icon-btn" id="orderClose" type="button" aria-label="Close">&times;</button>
-    </div>
-
-    <div class="modal-body">
-      <a class="modal-action" id="orderTalabat" href="#" target="_blank" rel="noopener">
-        <span data-i18n="orderTalabat">Talabat</span>
-        <span class="muted" data-i18n="orderSoon">Link will be added soon</span>
-      </a>
-      <a class="modal-action" id="orderSnoonu" href="#" target="_blank" rel="noopener">
-        <span data-i18n="orderSnoonu">Snoonu</span>
-        <span class="muted" data-i18n="orderSoon">Link will be added soon</span>
-      </a>
-      <a class="modal-action" id="orderKeeta" href="#" target="_blank" rel="noopener">
-        <span data-i18n="orderKeeta">Keeta</span>
-        <span class="muted" data-i18n="orderSoon">Link will be added soon</span>
-      </a>
-      <a class="modal-action" id="orderWhatsApp" href="#" target="_blank" rel="noopener">
-        <span data-i18n="orderWhatsApp">WhatsApp</span>
-        <span class="muted" id="waNumber">+974</span>
-      </a>
-      <a class="modal-action" id="orderCall" href="#">
-        <span data-i18n="orderCall">Call</span>
-        <span class="muted" id="callNumber">+974</span>
-      </a>
-    </div>
-  </div>
-
-  <!-- Menu modal -->
-  <div class="modal-overlay" id="menuOverlay" hidden></div>
-  <div class="modal modal-menu" id="menuModal" role="dialog" aria-modal="true" aria-labelledby="menuTitle" hidden>
-    <div class="modal-head">
-      <h3 id="menuTitle" data-i18n="menuTitle">Menu</h3>
-      <button class="icon-btn" id="menuClose" type="button" aria-label="Close">&times;</button>
-    </div>
-    <div class="modal-body">
-      <img class="menu-full" src="assets/menu-eng.jpg" alt="Menu" />
-    </div>
-  </div>
-
-  <!-- Toast -->
-  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
-
   <script src="script.js"></script>
-
-  <!-- Back to top -->
-  <button class="to-top" id="toTop" aria-label="Back to top" title="Back to top">
-    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-      <path d="M12 5l7 7-1.4 1.4L13 8.8V19h-2V8.8L6.4 13.4 5 12l7-7z" fill="currentColor"/>
-    </svg>
-  </button>
-
 </body>
 </html>

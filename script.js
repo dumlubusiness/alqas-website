@@ -1,521 +1,409 @@
-document.documentElement.classList.add('js');
-/* ALQAS website - clean, responsive, and stable
-   - Default language: EN (user requested "default language 1")
-   - Replace these links later with your real store links (Talabat/Snoonu/Keeta)
-*/
+/* =========================================================
+   ALQAS Landing (fixed + rebuilt)
+   - Working buttons (drawer, order modal, view menu, lightbox)
+   - Responsive (mobile + desktop)
+   - No broken iframe (uses Google Maps query embed)
+   - Optional AR support with i18n
+========================================================= */
 
-const MAPS_LINK = "https://maps.app.goo.gl/EytJS5FhABcwX12D8";
-const PHONE_QATAR = "+97455026741"; // <-- replace if needed
-
-const STORE_LINKS = {
-  talabat: "https://www.talabat.com/qatar",
-  snoonu: "https://snoonu.com/",
-  keeta: "https://www.keeta.com/"
-};
-
-const I18N = {
-  en: {
-    brandTitle: "ALQAS AL IRAQI",
-    brandSub: "Authentic Iraqi Shawarma in Qatar",
-    navMenu: "Menu",
-    navPromotions: "Promotions",
-    navBestsellers: "Bestsellers",
-    navGallery: "Gallery",
-    navLocation: "Location",
-
-    heroTitle: "Authentic Iraqi Shawarma — Fresh & Fast",
-    heroDesc: "Real Iraqi flavor in Qatar. Order in seconds via apps, WhatsApp, or a quick call — or tap directions on Google Maps.",
-    chipFresh: "Fresh daily",
-    chipDelivery: "Fast delivery",
-    chipQuality: "Consistent quality",
-
-
-    toggleDelivery: "Delivery",
-    togglePickup: "Pickup",
-    enterAddressLabel: "Enter your address",
-    addressPlaceholder: "Enter your location",
-    findAddressOnMap: "Find address on the map",
-
-    exploreMenuTitle: "Explore our menu",
-    exploreMenuSub: "Quick categories",
-    catShawarma: "Shawarma",
-    catPlates: "Plates",
-    catGrills: "Grills",
-    catSides: "Sides",
-    catSalads: "Salads",
-    catSauces: "Sauces & dips",
-
-    btnOrderNow: "Order Now",
-    btnViewMenu: "View Menu",
-    btnPromotions: "Promotions",
-    btnFindUs: "Find Us",
-    btnOpenMaps: "Open in Google Maps",
-
-    menuPromotionsTitle: "Menu & Promotions",
-    menuPromotionsHint: "You can replace items later (photos + names + prices).",
-
-    promoTag1: "Limited time",
-    promoTitle1: "Combo Upgrade",
-    promoDesc1: "Upgrade any shawarma with fries + drink. Limited-time value.",
-    promoTag2: "New",
-    promoTitle2: "Family Feast",
-    promoDesc2: "Made for sharing — big portions, great value. Limited time.",
-    promoTag3: "Best value",
-    promoTitle3: "Lunch Express",
-    promoDesc3: "Fast lunch combo — perfect for busy days. Limited time.",
-    promoCTA: "Order now",
-
-    bestsellersTitle: "Bestsellers",
-    bestsellersHint: "Customer favorites people reorder again and again.",
-    best1Title: "Signature Beef Shawarma",
-    best1Desc: "Perfect for bold-flavor lovers.",
-    best2Title: "Chicken Shawarma",
-    best2Desc: "Light, delicious, and popular.",
-    best3Title: "Combo Meal",
-    best3Desc: "Best value when you’re hungry.",
-
-    galleryTitle: "Gallery",
-    galleryHint: "A few favorites — replace with your real photos anytime.",
-
-    locationTitle: "Location",
-    locationHint: "Tap the button to open directions on Google Maps.",
-    mapPreviewText: "Open Google Maps to view the exact location.",
-
-    followUs: "Follow us",
-    socialSoon: "Social pages coming soon.",
-
-    footerTagline: "Authentic Iraqi Shawarma • Fresh daily • Easy ordering",
-
-    orderTitle: "Choose how to order",
-    orderTalabat: "Talabat",
-    orderSnoonu: "Snoonu",
-    orderKeeta: "Keeta",
-    orderWhatsApp: "WhatsApp",
-    orderCall: "Call",
-    orderSoon: "Link will be added soon",
-
-    menuTitle: "Menu",
-    "heroQuickLine": "Explore our menu • Quick categories"
-
-  },
-  ar: {
-    brandTitle: "شاورما قص العراقي",
-    brandSub: "شاورما عراقية أصلية في قطر",
-    navMenu: "القائمة",
-    navPromotions: "العروض",
-    navBestsellers: "الأكثر طلباً",
-    navGallery: "الصور",
-    navLocation: "الموقع",
-
-    heroTitle: "شاورما عراقية أصيلة — طازجة وسريعة",
-    heroDesc: "نكهة عراقية حقيقية في قطر. اطلب خلال ثوانٍ عبر التطبيقات أو واتساب أو اتصال سريع — أو افتح الاتجاهات على خرائط Google.",
-    chipFresh: "طازج يومياً",
-    chipDelivery: "توصيل سريع",
-    chipQuality: "جودة ثابتة",
-
-
-    toggleDelivery: "توصيل",
-    togglePickup: "استلام",
-    enterAddressLabel: "أدخل عنوانك",
-    addressPlaceholder: "أدخل موقعك",
-    findAddressOnMap: "اعثر على العنوان على الخريطة",
-
-    exploreMenuTitle: "استكشف قائمتنا",
-    exploreMenuSub: "أقسام سريعة",
-    catShawarma: "شاورما",
-    catPlates: "أطباق",
-    catGrills: "مشاوي",
-    catSides: "أطباق جانبية",
-    catSalads: "سلطات",
-    catSauces: "صلصات وتغميس",
-
-
-    btnOrderNow: "اطلب الآن",
-    btnViewMenu: "عرض القائمة",
-    btnPromotions: "العروض",
-    btnFindUs: "اعثر علينا",
-    btnOpenMaps: "افتح في خرائط Google",
-
-    menuPromotionsTitle: "القائمة والعروض",
-    menuPromotionsHint: "يمكنك استبدال العناصر لاحقاً (صور + أسماء + أسعار).",
-
-    promoTag1: "لفترة محدودة",
-    promoTitle1: "ترقية كومبو",
-    promoDesc1: "أضف بطاطس + مشروب بسعر خاص. عدّل التفاصيل لاحقاً.",
-    promoTag2: "جديد",
-    promoTitle2: "وليمة العائلة",
-    promoDesc2: "مناسبة للمشاركة. أضف العناصر والأسعار الحقيقية لاحقاً.",
-    promoTag3: "أفضل قيمة",
-    promoTitle3: "غداء سريع",
-    promoDesc3: "سريع وسعر مناسب. حدّث العرض عند الجاهزية.",
-    promoCTA: "اطلب الآن",
-
-    bestsellersTitle: "الأكثر طلباً",
-    bestsellersHint: "الأصناف المفضلة التي يطلبها الزبائن باستمرار.",
-    best1Title: "شاورما لحم سيجنتشر",
-    best1Desc: "مناسبة لمحبي النكهة القوية.",
-    best2Title: "شاورما دجاج",
-    best2Desc: "خفيفة ولذيذة ومحبوبة.",
-    best3Title: "وجبة كومبو",
-    best3Desc: "أفضل قيمة عندما تكون جائعاً.",
-
-    galleryTitle: "الصور",
-    galleryHint: "بعض الصور — يمكنك استبدالها بصورك الحقيقية في أي وقت.",
-
-    locationTitle: "الموقع",
-    locationHint: "اضغط على الزر لفتح الاتجاهات في خرائط Google.",
-    mapPreviewText: "افتح خرائط Google لمشاهدة الموقع بدقة.",
-
-    followUs: "تابعنا",
-    socialSoon: "حسابات التواصل الاجتماعي قريباً.",
-
-    footerTagline: "شاورما عراقية أصيلة • طازج يومياً • طلب سهل",
-
-    orderTitle: "اختر طريقة الطلب",
-    orderTalabat: "طلبات",
-    orderSnoonu: "سنوونو",
-    orderKeeta: "كيتا",
-    orderWhatsApp: "واتساب",
-    orderCall: "اتصال",
-    orderSoon: "سيتم إضافة الرابط قريباً",
-
-    menuTitle: "القائمة",
-    "heroQuickLine": "استكشف قائمة الطعام • فئات سريعة"
-
-  }
-};
-
-function $(sel, root=document){ return root.querySelector(sel); }
-function $all(sel, root=document){ return Array.from(root.querySelectorAll(sel)); }
-
-function showToast(message){
-  const toast = $("#toast");
-  if(!toast) return;
-  toast.textContent = message;
-  toast.hidden = false;
-  clearTimeout(showToast._t);
-  showToast._t = setTimeout(()=>{ toast.hidden = true; }, 2200);
-}
-
-function setMapsLinks(){
-  $all(".js-open-maps").forEach(a=>{
-    a.href = MAPS_LINK;
-  });
-}
-
-function setOrderLinks(){
-  const tal = $("#orderTalabat");
-  const sno = $("#orderSnoonu");
-  const kee = $("#orderKeeta");
-  const wa = $("#orderWhatsApp");
-  const call = $("#orderCall");
-  const waNum = $("#waNumber");
-  const callNum = $("#callNumber");
-
-  if(tal) tal.href = STORE_LINKS.talabat;
-  if(sno) sno.href = STORE_LINKS.snoonu;
-  if(kee) kee.href = STORE_LINKS.keeta;
-  if(wa) wa.href = `https://wa.me/${PHONE_QATAR.replace("+","")}`;
-  if(call) call.href = `tel:${PHONE_QATAR}`;
-
-  if(waNum) waNum.textContent = PHONE_QATAR;
-  if(callNum) callNum.textContent = PHONE_QATAR;
-}
-
-function applyLanguage(lang){
-  const dict = I18N[lang] || I18N.en;
-  $all("[data-i18n]").forEach(el=>{
-    const key = el.getAttribute("data-i18n");
-    if(dict[key] != null) el.innerHTML = dict[key];
-  });
-
-  // Translate placeholders: [data-i18n-placeholder]
-  $all("[data-i18n-placeholder]").forEach(el=>{
-    const key = el.getAttribute("data-i18n-placeholder");
-    if(key && dict[key] != null) el.setAttribute("placeholder", dict[key]);
-  });
-
-  document.documentElement.lang = lang;
-  document.documentElement.dir = (lang === "ar") ? "rtl" : "ltr";
-
-  // Active state on all language buttons
-  const isEn = lang === "en";
-  ["#langEN", "#langENMobile"].forEach(sel => { const el = $(sel); if(el) el.classList.toggle("is-active", isEn); });
-  ["#langAR", "#langARMobile"].forEach(sel => { const el = $(sel); if(el) el.classList.toggle("is-active", !isEn); });
-
-  localStorage.setItem("alqas_lang", lang);
-}
-
-function initLanguage(){
-  // Default to English on first visit, but remember the user's last choice.
-  const saved = localStorage.getItem("alqas_lang");
-  applyLanguage(saved || "en");
-
-  const bind = (id, lang) => {
-    const el = $(id);
-    if(!el) return;
-    el.addEventListener("click", ()=> applyLanguage(lang));
+document.addEventListener("DOMContentLoaded", () => {
+  // -------------------------
+  // EDIT THESE LINKS
+  // -------------------------
+  const LINKS = {
+    talabat: "https://www.talabat.com/qatar",
+    snoonu: "https://snoonu.com/",
+    whatsapp: "https://wa.me/97455026741",
+    call: "tel:+97455026741",
+    maps: "https://goo.gl/maps/q8jZ2XQYp1T2", // replace with your exact pin link
+    instagram: "https://www.instagram.com/",
+    tiktok: "https://www.tiktok.com/",
+    snapchat: "https://www.snapchat.com/"
   };
-  bind("#langEN", "en");
-  bind("#langAR", "ar");
-  bind("#langENMobile", "en");
-  bind("#langARMobile", "ar");
-}
 
-function openModal(modalId, overlayId){
-  const modal = $(modalId);
-  const overlay = $(overlayId);
-  if(!modal || !overlay) return;
-  overlay.hidden = false;
-  modal.hidden = false;
-  document.body.classList.add("modal-open");
-}
+  // -------------------------
+  // SELECTORS
+  // -------------------------
+  const body = document.body;
 
-function closeModal(modalId, overlayId){
-  const modal = $(modalId);
-  const overlay = $(overlayId);
-  if(!modal || !overlay) return;
-  overlay.hidden = true;
-  modal.hidden = true;
-  document.body.classList.remove("modal-open");
-}
+  const drawer = document.getElementById("drawer");
+  const drawerBackdrop = document.getElementById("drawerBackdrop");
+  const openDrawerBtn = document.getElementById("openDrawer");
+  const closeDrawerBtn = document.getElementById("closeDrawer");
 
-function initModals(){
-  // Order modal
-  $all(".js-order-now").forEach(btn=>{
-    btn.addEventListener("click", ()=>{
-      openModal("#orderModal", "#orderOverlay");
+  const orderModal = document.getElementById("orderModal");
+  const lightbox = document.getElementById("lightbox");
+  const lightboxImg = document.getElementById("lightboxImg");
+
+  const menuModal = document.getElementById("menuModal");
+  const menuImg = document.getElementById("menuImg");
+  const menuModalImg = document.getElementById("menuModalImg");
+
+  // Order modal links
+  const linkTalabat = document.getElementById("linkTalabat");
+  const linkSnoonu = document.getElementById("linkSnoonu");
+  const linkWhatsApp = document.getElementById("linkWhatsApp");
+  const linkCall = document.getElementById("linkCall");
+
+  // -------------------------
+  // UTILITIES
+  // -------------------------
+  const lockScroll = (locked) => {
+    body.style.overflow = locked ? "hidden" : "";
+  };
+
+  const setHidden = (el, hidden) => {
+    if (!el) return;
+    el.hidden = hidden;
+    el.setAttribute("aria-hidden", hidden ? "true" : "false");
+  };
+
+  const closeAll = () => {
+    // Drawer
+    if (drawer) drawer.classList.remove("is-open");
+    if (drawerBackdrop) drawerBackdrop.hidden = true;
+    if (openDrawerBtn) openDrawerBtn.setAttribute("aria-expanded", "false");
+
+    // Modals
+    setHidden(orderModal, true);
+    setHidden(lightbox, true);
+    setHidden(menuModal, true);
+
+    lockScroll(false);
+  };
+
+  // Close on ESC
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeAll();
+  });
+
+  // -------------------------
+  // DRAWER
+  // -------------------------
+  const openDrawer = () => {
+    closeAll();
+    if (!drawer || !drawerBackdrop) return;
+    drawer.classList.add("is-open");
+    drawerBackdrop.hidden = false;
+    if (openDrawerBtn) openDrawerBtn.setAttribute("aria-expanded", "true");
+    lockScroll(true);
+  };
+
+  if (openDrawerBtn) openDrawerBtn.addEventListener("click", openDrawer);
+  if (closeDrawerBtn) closeDrawerBtn.addEventListener("click", closeAll);
+  if (drawerBackdrop) drawerBackdrop.addEventListener("click", closeAll);
+
+  document.querySelectorAll(".js-close-drawer").forEach((a) => {
+    a.addEventListener("click", () => {
+      // allow anchor to scroll, then close
+      setTimeout(closeAll, 0);
     });
   });
-  const closeOrder = ()=> closeModal("#orderModal", "#orderOverlay");
-  $("#orderClose")?.addEventListener("click", closeOrder);
-  $("#orderOverlay")?.addEventListener("click", closeOrder);
 
-  // Menu modal
-  $all(".js-open-menu").forEach(btn=>{
-    btn.addEventListener("click", ()=>{
-      openModal("#menuModal", "#menuOverlay");
+  // -------------------------
+  // ORDER MODAL
+  // -------------------------
+  const openOrder = (e) => {
+    if (e) e.preventDefault();
+    closeAll();
+    setHidden(orderModal, false);
+    lockScroll(true);
+  };
+
+  document.querySelectorAll(".js-open-order").forEach((btn) => {
+    btn.addEventListener("click", openOrder);
+  });
+  document.querySelectorAll(".js-close-all").forEach((btn) => {
+    btn.addEventListener("click", closeAll);
+  });
+
+  // fill order modal links
+  if (linkTalabat) linkTalabat.href = LINKS.talabat;
+  if (linkSnoonu) linkSnoonu.href = LINKS.snoonu;
+  if (linkWhatsApp) linkWhatsApp.href = LINKS.whatsapp;
+  if (linkCall) linkCall.href = LINKS.call;
+
+  // Maps button
+  document.querySelectorAll(".js-open-maps").forEach((btn) => {
+    btn.addEventListener("click", () => window.open(LINKS.maps, "_blank"));
+  });
+
+  // Social buttons (in Location section)
+  const socialButtons = document.querySelectorAll(".social-btn");
+  if (socialButtons.length >= 3) {
+    socialButtons[0].href = LINKS.instagram;
+    socialButtons[1].href = LINKS.tiktok;
+    socialButtons[2].href = LINKS.snapchat;
+  }
+
+  // -------------------------
+  // VIEW MENU BUTTON
+  // -------------------------
+  const scrollMenuBtn = document.querySelector(".js-scroll-menu");
+  if (scrollMenuBtn) {
+    scrollMenuBtn.addEventListener("click", () => {
+      document.getElementById("menu")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  }
+
+  // -------------------------
+  // MENU FULLSCREEN
+  // -------------------------
+  const openMenuModal = () => {
+    if (!menuImg || !menuModalImg) return;
+    // load same image
+    menuModalImg.src = menuImg.src;
+    setHidden(menuModal, false);
+    lockScroll(true);
+  };
+
+  document.querySelectorAll(".js-menu-modal").forEach((btn) => {
+    btn.addEventListener("click", openMenuModal);
+  });
+
+  document.querySelectorAll(".js-close-menu").forEach((btn) => {
+    btn.addEventListener("click", closeAll);
+  });
+
+  // -------------------------
+  // LIGHTBOX FOR OFFERS/GALLERY
+  // -------------------------
+  const openLightbox = (imgSrc) => {
+    if (!lightbox || !lightboxImg) return;
+    lightboxImg.src = imgSrc;
+    setHidden(lightbox, false);
+    lockScroll(true);
+  };
+
+  document.querySelectorAll(".js-lightbox").forEach((el) => {
+    el.addEventListener("click", () => {
+      const imgSrc = el.getAttribute("data-img");
+      if (imgSrc) openLightbox(imgSrc);
     });
   });
-  const closeMenu = ()=> closeModal("#menuModal", "#menuOverlay");
-  $("#menuClose")?.addEventListener("click", closeMenu);
-  $("#menuOverlay")?.addEventListener("click", closeMenu);
 
-  // ESC closes
-  document.addEventListener("keydown", (e)=>{
-    if(e.key === "Escape"){
-      closeOrder();
-      closeMenu();
-      closeDrawer();
-    }
+  document.querySelectorAll(".js-close-lightbox").forEach((btn) => {
+    btn.addEventListener("click", closeAll);
   });
-}
 
-function openDrawer(){
-  const overlay = $("#drawerOverlay");
-  const drawer = $("#drawer");
-  const btn = $("#hamburgerBtn");
-  if(!overlay || !drawer || !btn) return;
-  overlay.hidden = false;
-  document.body.classList.add("drawer-open");
-  drawer.setAttribute("aria-hidden","false");
-  btn.setAttribute("aria-expanded","true");
-}
+  // -------------------------
+  // CONTACT FORM (WhatsApp message)
+  // -------------------------
+  const contactForm = document.getElementById("contactForm");
+  if (contactForm) {
+    contactForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const fd = new FormData(contactForm);
+      const name = String(fd.get("name") || "").trim();
+      const phone = String(fd.get("phone") || "").trim();
+      const msg = String(fd.get("message") || "").trim();
 
-function closeDrawer(){
-  const overlay = $("#drawerOverlay");
-  const drawer = $("#drawer");
-  const btn = $("#hamburgerBtn");
-  if(!overlay || !drawer || !btn) return;
-  overlay.hidden = true;
-  document.body.classList.remove("drawer-open");
-  drawer.setAttribute("aria-hidden","true");
-  btn.setAttribute("aria-expanded","false");
-}
+      const text = `ALQAS Contact فرم\nالاسم: ${name}\nالهاتف: ${phone}\nالرسالة: ${msg}`;
+      const url = LINKS.whatsapp + "?text=" + encodeURIComponent(text);
+      window.open(url, "_blank");
+      contactForm.reset();
+    });
+  }
 
-function initDrawer(){
-  $("#hamburgerBtn")?.addEventListener("click", openDrawer);
-  $("#drawerClose")?.addEventListener("click", closeDrawer);
-  $("#drawerOverlay")?.addEventListener("click", closeDrawer);
+  // -------------------------
+  // YEAR
+  // -------------------------
+  const year = document.getElementById("year");
+  if (year) year.textContent = String(new Date().getFullYear());
 
-  // Close drawer when resizing to desktop (prevents desktop weird overlay)
-  window.addEventListener("resize", ()=>{
-    if(window.innerWidth > 980){
-      closeDrawer();
-    }
-  });
-}
-
-function initSmoothScroll(){
-  const go = (target)=>{
-    const el = document.querySelector(target);
-    if(el){
-      el.scrollIntoView({behavior:"smooth", block:"start"});
-      closeDrawer();
+  // -------------------------
+  // i18n (EN/AR)
+  // -------------------------
+  const i18n = {
+    en: {
+      tagline: "Premium Iraqi Shawarma",
+      navMenu: "Menu",
+      navOffers: "Offers",
+      navGallery: "Gallery",
+      navLocation: "Location",
+      navContact: "Contact",
+      pill: "Fresh • Fast • Authentic",
+      heroTitle: "Authentic Iraqi Flavor — Made Fresh Daily.",
+      heroDesc: "The legendary shawarma of Al Wakra. Premium ingredients, generous portions, and fast delivery.",
+      btnOrderNow: "Order Now",
+      btnOrderDelivery: "Order Delivery",
+      btnViewMenu: "View Menu",
+      trust: "Open daily • 12:00 PM – 02:00 AM",
+      stat1v: "Fast delivery",
+      stat1k: "Talabat • Snoonu • WhatsApp",
+      stat2v: "Made fresh",
+      stat2k: "Daily prep • consistent taste",
+      stat3v: "Family-friendly",
+      stat3k: "Takeaway • dine-in vibes",
+      offersTitle: "Today’s Offers",
+      offersDesc: "Tap an offer to view it bigger.",
+      offer1t: "Combo Deals",
+      offer1d: "Best value meals for lunch & late night.",
+      offer2t: "Family Box",
+      offer2d: "Perfect for sharing — quick and filling.",
+      offer3t: "Weekend Special",
+      offer3d: "Limited-time promos — don’t miss out.",
+      menuTitle: "Menu",
+      menuDesc: "Zoom in to read easily.",
+      menuHint: "Tap to open full-screen",
+      galleryTitle: "Gallery",
+      galleryDesc: "Real photos from our kitchen & customers.",
+      locationTitle: "Visit Our Branch",
+      locationDesc: "Al Wakra Main Street • Qatar",
+      addrLabel: "Address",
+      addrValue: "Al Wakra Main Street, Qatar",
+      hoursLabel: "Hours",
+      hoursValue: "12:00 PM – 02:00 AM",
+      btnDirections: "Get Directions",
+      socialHint: "Tip: edit social links inside script.js.",
+      contactTitle: "Contact",
+      contactDesc: "Fast reply on WhatsApp.",
+      contactQuick: "Quick Actions",
+      btnWhatsApp: "WhatsApp",
+      btnCall: "Call",
+      contactNote: "Delivery platforms are available from the Order popup.",
+      contactFormTitle: "Send a message",
+      fName: "Name",
+      fPhone: "Phone",
+      fMsg: "Message",
+      btnSend: "Send",
+      formHint: "This form opens WhatsApp with your message (no backend needed).",
+      fab: "Order",
+      orderTitle: "Order Delivery",
+      orderDesc: "Choose your favorite platform.",
+      backTop: "Back to top"
+    },
+    ar: {
+      tagline: "شاورما عراقية بريميوم",
+      navMenu: "المنيو",
+      navOffers: "العروض",
+      navGallery: "الصور",
+      navLocation: "الموقع",
+      navContact: "تواصل",
+      pill: "طازج • سريع • أصيل",
+      heroTitle: "نكهة عراقية أصيلة — تحضير يومي.",
+      heroDesc: "شاورما الوكرة الأسطورية. مكونات ممتازة، كمية مشبعة، وتوصيل سريع.",
+      btnOrderNow: "اطلب الآن",
+      btnOrderDelivery: "طلب توصيل",
+      btnViewMenu: "عرض المنيو",
+      trust: "مفتوح يومياً • 12:00 ظهراً – 02:00 صباحاً",
+      stat1v: "توصيل سريع",
+      stat1k: "طلبات • سنونو • واتساب",
+      stat2v: "طازج يومياً",
+      stat2k: "تحضير يومي • طعم ثابت",
+      stat3v: "مناسب للعائلة",
+      stat3k: "سفري • أجواء مريحة",
+      offersTitle: "عروض اليوم",
+      offersDesc: "اضغط على العرض للتكبير.",
+      offer1t: "كومبو",
+      offer1d: "أفضل قيمة لوجبات الغداء والليل.",
+      offer2t: "بوكس عائلي",
+      offer2d: "مناسب للمشاركة — سريع ومشبع.",
+      offer3t: "عرض نهاية الأسبوع",
+      offer3d: "عروض محدودة — لا تفوتها.",
+      menuTitle: "المنيو",
+      menuDesc: "كبّر الصورة للقراءة بسهولة.",
+      menuHint: "اضغط للعرض بملء الشاشة",
+      galleryTitle: "الصور",
+      galleryDesc: "صور حقيقية من مطبخنا والعملاء.",
+      locationTitle: "زوروا الفرع",
+      locationDesc: "شارع الوكرة الرئيسي • قطر",
+      addrLabel: "العنوان",
+      addrValue: "شارع الوكرة الرئيسي، قطر",
+      hoursLabel: "ساعات العمل",
+      hoursValue: "12:00 ظهراً – 02:00 صباحاً",
+      btnDirections: "الاتجاهات",
+      socialHint: "ملاحظة: عدّل روابط السوشيال في script.js.",
+      contactTitle: "تواصل معنا",
+      contactDesc: "رد سريع على واتساب.",
+      contactQuick: "إجراءات سريعة",
+      btnWhatsApp: "واتساب",
+      btnCall: "اتصال",
+      contactNote: "منصات التوصيل متاحة من نافذة الطلب.",
+      contactFormTitle: "أرسل رسالة",
+      fName: "الاسم",
+      fPhone: "رقم الهاتف",
+      fMsg: "الرسالة",
+      btnSend: "إرسال",
+      formHint: "هذا النموذج يفتح واتساب برسالتك (بدون سيرفر).",
+      fab: "اطلب",
+      orderTitle: "طلب توصيل",
+      orderDesc: "اختر منصة الطلب.",
+      backTop: "أعلى الصفحة"
     }
   };
 
-  // elements with data-scroll
-  $all(".js-scroll").forEach(el=>{
-    el.addEventListener("click", (e)=>{
-      const ds = el.getAttribute("data-scroll");
-      const href = el.getAttribute("href");
-      const target = ds || href;
-      if(target && target.startsWith("#")){
-        e.preventDefault();
-        go(target);
-      }
+  const btnEN = document.getElementById("langEN");
+  const btnAR = document.getElementById("langAR");
+
+  const applyLang = (lang) => {
+    const dict = i18n[lang] || i18n.en;
+
+    // dir
+    document.documentElement.dir = (lang === "ar") ? "rtl" : "ltr";
+
+    // active state
+    if (btnEN) btnEN.classList.toggle("is-active", lang === "en");
+    if (btnAR) btnAR.classList.toggle("is-active", lang === "ar");
+
+    // replace text
+    document.querySelectorAll("[data-i18n]").forEach((el) => {
+      const key = el.getAttribute("data-i18n");
+      if (!key) return;
+      if (dict[key] !== undefined) el.textContent = dict[key];
     });
-  });
-}
 
+    // menu image swap (optional)
+    if (menuImg) {
+      const desired = (lang === "ar") ? "assets/menu-ar.jpg" : "assets/menu-eng.jpg";
+      menuImg.src = desired;
 
-function initRipple(){
-  const reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (reduced) return;
+      // if menu-ar.jpg doesn't exist, fallback to english
+      menuImg.onerror = () => {
+        menuImg.src = "assets/menu-eng.jpg";
+      };
+    }
+  };
 
-  document.querySelectorAll('.btn, .lang-btn, .social-btn, .nav-link, .hamburger, .hero-dot, .hero-arrow').forEach((btn) => {
-    btn.addEventListener('click', (e) => {
-      if (btn.matches('[disabled], .is-disabled')) return;
-      const rect = btn.getBoundingClientRect();
-      const size = Math.max(rect.width, rect.height);
-      const cx = (e.clientX ?? (rect.left + rect.width/2));
-      const cy = (e.clientY ?? (rect.top + rect.height/2));
-      const x = cx - rect.left - size/2;
-      const y = cy - rect.top - size/2;
+  if (btnEN) btnEN.addEventListener("click", () => applyLang("en"));
+  if (btnAR) btnAR.addEventListener("click", () => applyLang("ar"));
 
-      const ripple = document.createElement('span');
-      ripple.className = 'ripple';
-      ripple.style.width = ripple.style.height = size + 'px';
-      ripple.style.left = x + 'px';
-      ripple.style.top = y + 'px';
-      btn.appendChild(ripple);
-      window.setTimeout(() => ripple.remove(), 700);
-    }, { passive: true });
-  });
-}
+  // default language
+  applyLang("en");
 
-function initReveal(){
-  document.querySelectorAll('section, .card').forEach(el => el.classList.add('reveal'));
-  const reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (reduced || !('IntersectionObserver' in window)){
-    document.querySelectorAll('.reveal').forEach(el => el.classList.add('is-visible'));
-    return;
-  }
+  // -------------------------
+  // Reveal on scroll
+  // -------------------------
+  const revealItems = document.querySelectorAll(".reveal");
   const io = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting){
-        entry.target.classList.add('is-visible');
-        io.unobserve(entry.target);
-      }
+    entries.forEach((e) => {
+      if (e.isIntersecting) e.target.classList.add("is-in");
     });
   }, { threshold: 0.12 });
-  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-}
 
+  revealItems.forEach((el) => io.observe(el));
 
-function initSocial(){
-  $all(".js-social").forEach(a=>{
-    a.addEventListener("click", (e)=>{
-      e.preventDefault();
-      showToast(document.documentElement.lang === "ar" ? "قريباً" : "Coming soon");
-    });
-  });
-}
+  // -------------------------
+  // Ripple effect
+  // -------------------------
+  const addRipple = (e) => {
+    const target = e.currentTarget;
+    const rect = target.getBoundingClientRect();
+    const size = Math.max(rect.width, rect.height);
+    const x = e.clientX - rect.left - size / 2;
+    const y = e.clientY - rect.top - size / 2;
 
-function initCarousel(){
-  const slides = $all("#heroCarousel .hero-slide");
-  const dotsWrap = $("#heroDots");
-  if(slides.length === 0 || !dotsWrap) return;
+    const ripple = document.createElement("span");
+    ripple.className = "ripple";
+    ripple.style.width = ripple.style.height = size + "px";
+    ripple.style.left = x + "px";
+    ripple.style.top = y + "px";
 
-  let idx = 0;
-  const dots = slides.map((_, i)=>{
-    const b = document.createElement("button");
-    b.type = "button";
-    b.className = "hero-dot" + (i===0 ? " is-active" : "");
-    b.addEventListener("click", ()=>{ set(i); restart(); });
-    dotsWrap.appendChild(b);
-    return b;
-  });
-
-  function set(i){
-    idx = (i + slides.length) % slides.length;
-    slides.forEach((s, k)=> s.classList.toggle("is-active", k===idx));
-    dots.forEach((d, k)=> d.classList.toggle("is-active", k===idx));
-  }
-
-  $("#heroPrev")?.addEventListener("click", ()=>{ set(idx-1); restart(); });
-  $("#heroNext")?.addEventListener("click", ()=>{ set(idx+1); restart(); });
-
-  let t = null;
-  function start(){
-    t = setInterval(()=> set(idx+1), 5500);
-  }
-  function restart(){
-    clearInterval(t);
-    start();
-  }
-  start();
-}
-
-
-function initOrderPanel(){
-  const modeBtns = $all(".js-order-mode");
-  if(modeBtns.length){
-    const setMode = (mode)=>{
-      modeBtns.forEach(b=> b.classList.toggle("is-active", b.dataset.mode === mode));
-      document.body.dataset.orderMode = mode;
-    };
-    modeBtns.forEach(b=> b.addEventListener("click", ()=> setMode(b.dataset.mode)));
-    setMode(document.body.dataset.orderMode || "delivery");
-  }
-
-  // Open Google Maps for any element that needs it
-  $all(".js-open-maps").forEach(el=>{
-    el.addEventListener("click", (e)=>{
-      e.preventDefault();
-      if(MAPS_LINK) window.open(MAPS_LINK, "_blank", "noopener,noreferrer");
-    });
-  });
-}
-
-
-function initToTop(){
-  const btn = document.getElementById('toTop');
-  if (!btn) return;
-
-  const toggle = () => {
-    if (window.scrollY > 420) btn.classList.add('show');
-    else btn.classList.remove('show');
+    target.appendChild(ripple);
+    setTimeout(() => ripple.remove(), 560);
   };
 
-  window.addEventListener('scroll', toggle, { passive: true });
-  toggle();
-
-  btn.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+  document.querySelectorAll("[data-ripple]").forEach((el) => {
+    el.addEventListener("click", addRipple);
   });
-}
-
-
-function init(){
-  setMapsLinks();
-  initOrderPanel();
-  setOrderLinks();
-  initLanguage();
-  initDrawer();
-  initSmoothScroll();
-  initModals();
-  initSocial();
-  initCarousel();
-  initRipple();
-  initToTop();
-  initReveal();
-  // page opening animation
-  requestAnimationFrame(() => document.documentElement.classList.add('is-loaded'));
-
-}
-
-document.addEventListener("DOMContentLoaded", init);
-
-window.addEventListener('load', () => document.documentElement.classList.add('is-loaded'));
+});
